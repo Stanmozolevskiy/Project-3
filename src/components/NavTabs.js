@@ -6,16 +6,10 @@ const underline = {
   'text-decoration': 'none'
 }
 
-
 function NavTabs() {
   return (
     <div>
       <ul className="nav nav-tabs">
-        <li className="nav-item">
-          <Link to="/" className={window.location.pathname === "/" ? "nav-link active" : "nav-link"} style={underline}>
-            Home
-        </Link>
-        </li>
         <li className="nav-item">
           <Link
             to="/about"
@@ -38,14 +32,6 @@ function NavTabs() {
             className={window.location.pathname === "/contact" ? "nav-link active" : "nav-link"} style={underline}
           >
             Contact
-        </Link>
-        </li>
-        <li className="nav-item">
-          <Link
-            to="/contact/learn"
-            className={window.location.pathname === "/contact/learn" ? "nav-link active" : "nav-link"} style={underline}
-          >
-            Learn
         </Link>
         </li>
       </ul>
