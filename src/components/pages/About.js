@@ -2,6 +2,7 @@ import React from "react";
 import './style.css';
 import NavTabs from "../NavTabs"
 
+ 
 function About() {
   return (
     <div>{ <NavTabs/> }
