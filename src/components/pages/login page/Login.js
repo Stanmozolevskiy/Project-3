@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Food from '../foodPage/Contact'
+import API from "../../../utils/API";
 
 class Login extends React.Component {
   constructor(props, context) {
@@ -12,13 +13,12 @@ class Login extends React.Component {
     this.handleClose = this.handleClose.bind(this);
 
     this.state = {
+      show: true,
+    };
+    this.state = {
       userName: "",
       userPassword: "",
-      search: "Steak"
-    };
-
-    this.state = {
-      show: true,
+      query: ""
     };
   }
 
@@ -48,24 +48,24 @@ class Login extends React.Component {
   handleShow() {
     this.setState({ show: true });
   }
-  food = any => {
-    const axios = require('axios');
-    require('dotenv').config();
-    const id = "4fd1d55d"
-    const key = "9788c6b183e3995fbc144d4b1b300850"
-    any = this.setState(this.state.search)
-    console.log(any)
-    axios.get("https://api.nutritionix.com/v1_1/search/" + any + "?results=0:10&fields=item_name,brand_name,nf_calories&appId=" + id + "&appKey=" + key)
+  searchFood = query => {
+    API.search(query)
       .then(response => {
         const itemName = response.data.hits[0].fields.item_name
         const brand = response.data.hits[0].fields.brand_name
         const calories = response.data.hits[0].fields.nf_calories
         const servingSize = response.data.hits[0].fields.nf_serving_size_qty
-        console.log(Object.entries(response.data.hits))
-        console.log("\nName: " + itemName + "\nBrand: " + brand + "\nCalories: " + calories + "\nServing Size: " + servingSize)
+        console.log(response.data.hits[0].fields)
+        const data = ("\nName: " + itemName + "\nBrand: " + brand + "\nCalories: " + calories + "\nServing Size: " + servingSize)
+        console.log(data)
+        this.render(<div></div>)
       });
   }
-
+  handleFoodSubmit = (event) => {
+    event.preventDefault();
+    this.searchFood(this.state.query)
+    
+  }
   render() {
     return (
       <>
@@ -79,12 +79,12 @@ class Login extends React.Component {
           <Modal.Body>
 
             <div className="form-group">
-              <label for="exampleInputEmail1">Email address</label>
+              <label htmlFor="exampleInputEmail1">Email address</label>
               <input type="email" value={this.state.userName} onChange={this.handleInputChange} name="userName" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
               <small id="emailHelp" className="form-text text-muted"></small>
             </div>
             <div className="form-group">
-              <label for="exampleInputPassword1">Password</label>
+              <label htmlFor="exampleInputPassword1">Password</label>
               <input type="password" value={this.state.userPassword} onChange={this.handleInputChange} name="userPassword" className="form-control" id="exampleInputPassword1" placeholder="Password" />
             </div>
           </Modal.Body>
@@ -99,8 +99,13 @@ class Login extends React.Component {
           </Modal.Footer>
         </Modal>
         <Food>
-          <button onClick={this.food}>Hello World!</button>
-
+          <form>
+            <div className="form-group">
+              <label htmlFor="exampleInputEmail1">Food Search</label>
+              <input type="search" value={this.state.query} onChange={this.handleInputChange} name="query" className="form-control" />
+            </div>
+            <button onClick={this.handleFoodSubmit}>Hello World!</button>
+          </form>
         </Food>
       </>
     );
