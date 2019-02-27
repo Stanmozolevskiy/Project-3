@@ -5,7 +5,7 @@ const User = require("../userModel");
 
 // Database configuration
 // Save the URL of our database as well as the name of our collection
-const databaseUrl = "project";
+const databaseUrl = "heroku_t440t9t2";
 const collections = ["users"];
 
 // Use mongojs to hook the database to the db constiable
