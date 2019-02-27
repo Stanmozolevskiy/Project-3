@@ -1,11 +1,10 @@
 // Dependencies
 const express = require("express");
 const mongoose = require("mongoose");
-const path = require("path");
-const apiRoutes = require("./routes");
 const app = express();
 const routes = require("./routes/index");
 const PORT = process.env.PORT || 3001;
+const path = require("path");
 
 
 // Define middleware here
@@ -18,6 +17,10 @@ if (process.env.NODE_ENV === "production") {
 
 // Add routes, both API and view
 app.use(routes);
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
+
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/project");
