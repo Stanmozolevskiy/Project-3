@@ -2,7 +2,7 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-
+import axios from 'axios'
 
 class Login extends React.Component {
   constructor(props, context) {
@@ -13,12 +13,11 @@ class Login extends React.Component {
 
     this.state = {
       userName: "",
-      userPassword: ""
-    };
-
-    this.state = {
+      userEmail: "",
+      userPassword: "",
       show: true,
     };
+ 
   }
 
   handleInputChange = event => {
@@ -30,14 +29,24 @@ class Login extends React.Component {
     });
   };
   handleFormSubmit = event => {
-   
-    this.setState({ show: false });
-  
-    console.log(`${this.state.userName} ${this.state.userPassword}`);
-    this.setState({
-      userName: "",
-      userPassword: ""
-    });
+    
+    axios({
+      method: "post",
+      url:"/submit",
+      headers:{
+        "content-type": "application/json"
+      },
+      data:{
+        userName: this.state.userName,
+        userEmail: this.state.userEmail,
+        userPassword:this.state.userPassword
+      }
+    }).then( data => {
+     
+      this.setState({ show: false });
+
+    })
+    
   };
 
   handleClose() {
@@ -60,15 +69,17 @@ class Login extends React.Component {
 
           <Modal.Body>
 
-            <div className="form-group">
+          <form >
+           
+              <label >user name</label>
+              <input type="text" value={this.state.userName}  onChange={this.handleInputChange} name="userName" className="form-control"  placeholder="Enter username" />
               <label for="exampleInputEmail1">Email address</label>
-              <input type="email" value={this.state.userName}  onChange={this.handleInputChange} name="userName" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
-              <small id="emailHelp" className="form-text text-muted"></small>
-            </div>
-            <div className="form-group">
+              <input type="email" value={this.state.userEmail}  onChange={this.handleInputChange} name="userEmail" className="form-control"  placeholder="Enter email" />
               <label for="exampleInputPassword1">Password</label>
               <input type="password" value={this.state.userPassword}  onChange={this.handleInputChange} name="userPassword" className="form-control" id="exampleInputPassword1" placeholder="Password" />
-            </div>
+              
+            </form>
+            
           </Modal.Body>
 
           <Modal.Footer>
