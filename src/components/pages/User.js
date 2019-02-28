@@ -1,6 +1,7 @@
 import React from "react";
 import NavTabs from "../NavTabs"
 import { Form, Button } from "react-bootstrap";
+import axios from "axios";
 
 class User extends React.Component {
     constructor(props) {
@@ -24,9 +25,16 @@ class User extends React.Component {
 
     }
 
-    handleSubmit = () => {
+    handleSubmit = (event) => {
         const {firstName} = this.state
         console.log("first name: " + firstName);
+        event.preventDefault();
+        axios({
+            method: "POST",
+            url: "http://localhost:8081/api/form"
+
+        })
+
     }
 
     isFormValid = () => {
