@@ -1,41 +1,80 @@
 import React from "react";
 import NavTabs from "../NavTabs"
+import { Form, Button } from "react-bootstrap";
 
+class User extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            firstName: "",
+            lastName: "",
+            isFormValid: false
+        }
+    }
+    onFirstNameChange = (e) => {
+        e.preventDefault();
+        console.log("e " + e);
+        console.log("e.target.value: " + e.target.value);
+        const value = e.target.value;
+        console.log(value);
 
+        this.setState({
+            firstName: value
+        })
 
-fileChangedHandler = (event) => {
-    const file = event.target.files[0];
-}
+    }
 
-// upLoadHandler = () => {
-//     state = {selectedFile: null}
-// }
+    handleSubmit = () => {
+        const {firstName} = this.state
+        console.log("first name: " + firstName);
+    }
 
-upLoadHandler = () => {
-    const formData = new FormData()
-    formData.append(
-      'myFile',
-      this.state.selectedFile,
-      this.state.selectedFile.name
-    )
-    axios.post('/api/userForm', formData)
-  }
+    isFormValid = () => {
+        const {firstName} = this.state
+        console.log("firstName: " + firstName);
+        if (firstName !== "") {
+            return false;
+        }
+        return true
+    }
 
-function User () {
-    return (
-        <div className="container">
-        <h1>Welcome to fitness first! // grab username from the database </h1>
-        <img src="#image the user can add" />
-        <form>
-            <input type="file" onChange={this.fileChangedHandler}> </input>
-            <button onClick={this.upLoadHandler}>Upload </button>
-            <input type="text" name="firstname"> </input>
-            <input type="text" name="lastname"> </input>
+    render() {
+        console.log("isFormValid: " + this.isFormValid());
+        const {firstName, lastName} = this.state;
+        console.log("first name: " + firstName);
+        return (
+            <div className="container">
+                <Form>
+                    <Form.Group controlId="formFirstName">
+                        <Form.Label>First Name</Form.Label>
+                        <Form.Control type="text" value={this.state.firstName} onChange={this.onFirstNameChange} placeholder="Enter First Name"/>
+                        <Form.Text className="text-muted">
+                            We'll never share your email with anyone else.
+                        </Form.Text>
+                    </Form.Group>
+                    <Form.Group controlId="formLasttName">
+                        <Form.Label>Last Name</Form.Label>
+                        <Form.Control type="text" placeholder="Enter Last Name"/>
+                        <Form.Text className="text-muted">
+                            We'll never share your email with anyone else.
+                        </Form.Text>
+                    </Form.Group>
 
+                    <Form.Group controlId="formBasicPassword">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type="password" placeholder="Password"/>
+                    </Form.Group>
+                    <Form.Group controlId="formBasicChecbox">
+                        <Form.Check type="checkbox" label="Check me out"/>
+                    </Form.Group>
+                    <Button variant="primary" disabled={this.isFormValid()} onClick={this.handleSubmit}>
+                        Submit
+                    </Button>
+                </Form>;
+            </div>
+        )
+    }
 
-        </form>
-        </div>
-    )
 }
 
 export default User;
