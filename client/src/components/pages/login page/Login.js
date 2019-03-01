@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-
 class Login extends React.Component {
   constructor(props, context) {
     super(props, context);
@@ -13,10 +12,8 @@ class Login extends React.Component {
 
     this.state = {
       userName: "",
-      userPassword: ""
-    };
-
-    this.state = {
+      userEmail: "",
+      userPassword: "",
       show: true,
     };
   }
@@ -69,6 +66,7 @@ class Login extends React.Component {
               <label for="exampleInputPassword1">Password</label>
               <input type="password" value={this.state.userPassword}  onChange={this.handleInputChange} name="userPassword" className="form-control" id="exampleInputPassword1" placeholder="Password" />
             </div>
+
           </Modal.Body>
 
           <Modal.Footer>

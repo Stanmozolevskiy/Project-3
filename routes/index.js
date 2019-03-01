@@ -40,6 +40,7 @@ router.get("/all", function(req, res) {
 
 // Route to post our form submission to mongoDB via mongoose
 router.post("/api/submit", function(req, res) {
+
   // Create a new user using req.body
   User.create(req.body)
     .then(function(dbUser) {
