@@ -11,13 +11,13 @@ render() {
     <Navbar expand="lg" id="navbar">
     <Navbar fixed="top" />
     <div class="col-md-3">
-      <Button size="large" className="btn-outline-secondary col-md-12" href="/user" id="navbutton">My Profile</Button>
+      <Button size="large" className="btn-outline-secondary col-md-12" href="/myProfile" id="navbutton">My Profile</Button>
       </div>
       <div class="col-md-3">
-      <Button size="large" className="btn-outline-secondary col-md-12" href="/blog" id="navbutton">Fitness Log</Button>
+      <Button size="large" className="btn-outline-secondary col-md-12" href="/FitnessLog" id="navbutton">Fitness Log</Button>
       </div>
       <div class="col-md-3">
-      <Button size="large" className="btn-outline-secondary col-md-12" href="/about" id="navbutton">Fitness Summary</Button>
+      <Button size="large" className="btn-outline-secondary col-md-12" href="/FitnessSummary" id="navbutton">Fitness Summary</Button>
       </div>
       <div class="col-md-3">
       <Button size="large" className="btn-outline-secondary col-md-12" href="/Login" id="navbutton">Sign In</Button>

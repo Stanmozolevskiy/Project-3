@@ -113,7 +113,12 @@ class Login extends React.Component {
           {this.state.results.map((each, i) => (
             <div  className="foodContainer">
               <div className="eachName">
-              <p className="we" key={i} >{each.fields.item_name}</p>
+              <ul>
+                <li className="we" key={i} >{"Food: " + each.fields.item_name}</li>
+                <li className="we" key={i} >{"Brand: " + each.fields.brand_name}</li>
+                <li className="we" key={i} >{"Calories: " + each.fields.nf_calories}</li>
+                <li className="we" key={i} >{"Serving Size: " + each.fields.nf_serving_size_qty}</li>
+              </ul>
               </div>
             </div>
             
