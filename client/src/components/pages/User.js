@@ -61,34 +61,33 @@ class User extends React.Component {
         const {firstName, lastName} = this.state;
         console.log("first name: " + firstName);
         return (
-            <div className="container">
+            <div>{ <NavTabs/> }
                 <Form>
                     <Form.Group controlId="formFirstName">
                         <Form.Label>First Name</Form.Label>
                         <Form.Control type="text" value={this.state.firstName} onChange={this.onFirstNameChange} placeholder="Enter First Name"/>
                         <Form.Text className="text-muted">
-                            We'll never share your email with anyone else.
                         </Form.Text>
                     </Form.Group>
                     <Form.Group controlId="formLasttName">
                         <Form.Label>Last Name</Form.Label>
                         <Form.Control type="text" value={this.state.lastName} onChange={this.onlastNameChange} placeholder="Enter Last Name"/>
                         <Form.Text className="text-muted">
-                            We'll never share your email with anyone else.
                         </Form.Text>
                     </Form.Group>
 
                     <Form.Group controlId="formBasicPassword">
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password"/>
+                        <Form.Label>Age</Form.Label>
+                        <Form.Control type="text" placeholder="Password"/>
                     </Form.Group>
-                    <Form.Group controlId="formBasicChecbox">
-                        <Form.Check type="checkbox" label="Check me out"/>
+                    <Form.Group controlId="FitnessBox">
+                    <Form.Label>Fitness Goal</Form.Label>
+                    <Form.Control as="textarea" rows="5" />
                     </Form.Group>
                     <Button variant="primary" disabled={this.isFormValid()} onClick={this.handleSubmit}>
                         Submit
                     </Button>
-                </Form>;
+                </Form>
             </div>
         )
     }
