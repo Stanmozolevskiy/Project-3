@@ -4,7 +4,6 @@ import NavTabs from "../NavTabs"
 function Contact() {
   return (
     <div>
-      {<NavTabs />}
       <h1>Blog Page</h1>
       <p>
         Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, 

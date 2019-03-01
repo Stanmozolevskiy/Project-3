@@ -76,7 +76,7 @@ class Login extends React.Component {
         <Modal show={this.state.show} onHide={this.handleClose}>
 
           <Modal.Header closeButton>
-            <Modal.Title>Loggin</Modal.Title>
+            <Modal.Title>Login</Modal.Title>
           </Modal.Header>
 
           <Modal.Body>
@@ -98,7 +98,7 @@ class Login extends React.Component {
               Login
               </Button>
             <Button variant="primary" onClick={this.handleClose}>
-              Dissmis
+              Dismiss
               </Button>
           </Modal.Footer>
         </Modal>
@@ -108,7 +108,7 @@ class Login extends React.Component {
               <label htmlFor="exampleInputEmail1">Food Search</label>
               <input type="search" value={this.state.query} onChange={this.handleInputChange} name="query" className="form-control" />
             </div>
-            <button onClick={this.handleFoodSubmit}>Hello World!</button>
+            <Button variant="primary" onClick={this.handleFoodSubmit}>Search</Button>
           </form>
           {this.state.results.map((each, i) => (
             <div  className="foodContainer">
