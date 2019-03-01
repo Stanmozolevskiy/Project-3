@@ -5,7 +5,7 @@ import NavTabs from "../NavTabs"
  
 function About() {
   return (
-    <div>{ <NavTabs/> }
+    <div>
 
       <article className="post">
     <h2>Chapter Three: The Great American Game</h2>

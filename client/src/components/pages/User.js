@@ -61,7 +61,7 @@ class User extends React.Component {
         const {firstName, lastName} = this.state;
         console.log("first name: " + firstName);
         return (
-            <div>{ <NavTabs/> }
+            <div>
                 <Form>
                     <Form.Group controlId="formFirstName">
                         <Form.Label>First Name</Form.Label>
@@ -76,9 +76,9 @@ class User extends React.Component {
                         </Form.Text>
                     </Form.Group>
 
-                    <Form.Group controlId="formBasicPassword">
+                    <Form.Group controlId="formAge">
                         <Form.Label>Age</Form.Label>
-                        <Form.Control type="text" placeholder="Password"/>
+                        <Form.Control type="text" placeholder="Enter Age"/>
                     </Form.Group>
                     <Form.Group controlId="FitnessBox">
                     <Form.Label>Fitness Goal</Form.Label>
