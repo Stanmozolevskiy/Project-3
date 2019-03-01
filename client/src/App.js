@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import About from "./components/pages/About";
-import Blog from "./components/pages/Blog";
+import FitnessSummary from "./components/pages/FitnessSummary";
+import FitnessLog from "./components/pages/FitnessLog";
 import Login from "./components/pages/loginPage/Login";
-import User from "./components/pages/User";
+import MyProfile from "./components/pages/MyProfile";
 import CustomNavbar from "./components/Navbar";
 import './appstyle.css';
 import Contact from "./components/pages/foodPage/Contact"
@@ -19,9 +19,9 @@ function App() {
         <CustomNavbar />
         <Switch>
         <Route exact path="/" component={Login} /> 
-        <Route exact path="/user" component={User} />
-        <Route exact path="/about" component={About}  />
-        <Route exact path="/blog" component={Blog} />
+        <Route exact path="/MyProfile" component={MyProfile} />
+        <Route exact path="/FitnessSummary" component={FitnessSummary}  />
+        <Route exact path="/FitnessLog" component={FitnessLog} />
         <Route exact path="/contact" component={Contact} />
         <Route component={noMatch} />
         </Switch>
