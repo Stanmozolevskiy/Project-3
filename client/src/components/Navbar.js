@@ -10,14 +10,17 @@ render() {
   return (
     <Navbar expand="lg" id="navbar">
     <Navbar fixed="top" />
-    <div class="col-md-4">
+    <div class="col-md-3">
       <Button size="large" className="btn-outline-secondary col-md-12" href="#profile" id="navbutton">My Profile</Button>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-3">
       <Button size="large" className="btn-outline-secondary col-md-12" href="#results" id="navbutton">Results</Button>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-3">
       <Button size="large" className="btn-outline-secondary col-md-12" href="#signin" id="navbutton">Sign In</Button>
+      </div>
+      <div class="col-md-3">
+      <Button size="large" className="btn-outline-secondary col-md-12" href="#log" id="navbutton">Exercise Log</Button>
       </div>
     </Navbar>
   );
