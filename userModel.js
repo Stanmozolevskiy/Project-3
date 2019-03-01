@@ -9,13 +9,25 @@ var UserSchema = new Schema({
   userName: {
     type: String,
     trim: true,
-    required: true
+
+    required: false
+  },
+
+  firstName: {
+      type: String
+  },
+
+  lastName: {
+      type: String
+
   },
   
   userPassword: {
     type: String,
     trim: true,
-    required: true,
+
+    required: false,
+
     validate: [
       function(input) {
         return input.length >= 6;
@@ -41,3 +53,4 @@ var User = mongoose.model("User", UserSchema);
 
 // Export the User model
 module.exports = User;
+

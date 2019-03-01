@@ -1,11 +1,10 @@
 import React from "react";
 import './style.css';
 import NavTabs from "../NavTabs"
-import Login from "../pages/login page/Login"
-
 function About() {
   return (
-    <div>{<Login/>} { <NavTabs/> }
+    <div>{ <NavTabs/> }
+
       <article className="post">
     <h2>Chapter Three: The Great American Game</h2>
 

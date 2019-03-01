@@ -10,9 +10,17 @@ function NavTabs() {
   return (
     <div>
       <ul className="nav nav-tabs">
+      <li className="nav-item">
+          <Link
+            to="/user"
+            className={window.location.pathname === "/user" ? "nav-link active" : "nav-link"} style={underline}
+          >
+            My Profile
+        </Link>
+        </li>
         <li className="nav-item">
           <Link
-            to="/"
+            to="/about"
             className={window.location.pathname === "/about" ? "nav-link active" : "nav-link"} style={underline}
           >
             About
