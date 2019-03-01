@@ -1,0 +1,30 @@
+#footer {
+    background-color: rgb(206, 216, 219);
+    position:absolute;
+    left:0;
+    bottom:0;
+    right:0;
+}
+#inputdiv {
+    border-top-style: solid;
+    border-top-color: white;
+    border-top-width: 2px;
+    padding: 5px;
+    align-content: center;
+}
+#options {
+    padding-left: 30px;
+    padding-top: 5px;
+    color: gray;
+}
+
+#optionslink {
+    padding-top: 5px;
+    color: gray;
+}
+#send {
+    padding-right: 30px;
+    padding-top: 5px;
+    color: gray;
+    text-align: right;
+}
