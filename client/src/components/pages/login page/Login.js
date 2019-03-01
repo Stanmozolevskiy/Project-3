@@ -2,12 +2,9 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-<<<<<<< HEAD:client/src/components/pages/login page/Login.js
-=======
 import Food from '../foodPage/Contact'
 import API from "../../../utils/API";
 import "../style.css"
->>>>>>> Orlando:src/components/pages/login page/Login.js
 
 class Login extends React.Component {
   constructor(props, context) {
@@ -17,15 +14,10 @@ class Login extends React.Component {
     this.handleClose = this.handleClose.bind(this);
 
     this.state = {
-<<<<<<< HEAD:client/src/components/pages/login page/Login.js
       userName: "",
       userEmail: "",
       userPassword: "",
-=======
->>>>>>> Orlando:src/components/pages/login page/Login.js
       show: true,
-      userName: "",
-      userPassword: "",
       query: "",
       results: []
     };
