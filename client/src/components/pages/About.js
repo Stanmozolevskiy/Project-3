@@ -1,6 +1,11 @@
 import React from "react";
 import './style.css';
 import NavTabs from "../NavTabs"
+<<<<<<< HEAD:client/src/components/pages/About.js
+=======
+
+ 
+>>>>>>> Orlando:src/components/pages/About.js
 function About() {
   return (
     <div>{ <NavTabs/> }

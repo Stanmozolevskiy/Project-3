@@ -68,3 +68,8 @@
     text-align: right;
     border-right: 2px solid var(--yellow);
   }
+  .foodContainer{
+    width: 80%;
+    height: 200px;
+    background-color: purple;
+  }

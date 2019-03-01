@@ -24,4 +24,11 @@
 
 node_modules
 .DS_Store
+<<<<<<< HEAD
+=======
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+>>>>>>> Orlando
 
