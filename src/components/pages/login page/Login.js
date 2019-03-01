@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Food from '../foodPage/Contact'
 import API from "../../../utils/API";
+import "../style.css"
 
 class Login extends React.Component {
   constructor(props, context) {
@@ -14,11 +15,10 @@ class Login extends React.Component {
 
     this.state = {
       show: true,
-    };
-    this.state = {
       userName: "",
       userPassword: "",
-      query: ""
+      query: "",
+      results: []
     };
   }
 
@@ -48,8 +48,9 @@ class Login extends React.Component {
   handleShow() {
     this.setState({ show: true });
   }
-  searchFood = query => {
-    API.search(query)
+
+  async searchFood(query) {
+    await API.search(query)
       .then(response => {
         const itemName = response.data.hits[0].fields.item_name
         const brand = response.data.hits[0].fields.brand_name
@@ -58,15 +59,16 @@ class Login extends React.Component {
         console.log(response.data.hits[0].fields)
         const data = ("\nName: " + itemName + "\nBrand: " + brand + "\nCalories: " + calories + "\nServing Size: " + servingSize)
         console.log(data)
-        this.render(<div></div>)
+        this.setState({ results: response.data.hits })
       });
   }
   handleFoodSubmit = (event) => {
     event.preventDefault();
     this.searchFood(this.state.query)
-    
+
   }
   render() {
+    console.log(this.state.results)
     return (
       <>
 
@@ -106,6 +108,15 @@ class Login extends React.Component {
             </div>
             <button onClick={this.handleFoodSubmit}>Hello World!</button>
           </form>
+          {this.state.results.map((each, i) => (
+            <div  className="foodContainer">
+              <div className="eachName">
+              <p className="we" key={i} >{each.fields.item_name}</p>
+              </div>
+            </div>
+            
+            
+          ))}
         </Food>
       </>
     );
