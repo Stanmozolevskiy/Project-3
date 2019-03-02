@@ -1,12 +1,11 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button, Modal, Container, Row, Col, Image} from 'react-bootstrap';
-import Carousel from 'react-bootstrap/Carousel'
+import {Button, Modal, Container, Image} from 'react-bootstrap';
+// import Carousel from 'react-bootstrap/Carousel'
 // import Modal from 'react-bootstrap/Modal';
 import Food from '../foodPage/Contact'
 import API from "../../../utils/API";
 import "../style.css"
-import ReactDOM from "react-dom";
 import banner from './image/FitnessFirst.png';
 
 class Login extends React.Component {

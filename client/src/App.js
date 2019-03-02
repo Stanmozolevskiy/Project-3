@@ -8,6 +8,7 @@ import CustomNavbar from "./components/Navbar";
 import './appstyle.css';
 import Contact from "./components/pages/foodPage/Contact"
 import noMatch from "./components/pages/noMatch";
+import SignIn from "./components/pages/SignInPage/signIn"
 
 
 
@@ -23,6 +24,7 @@ function App() {
         <Route exact path="/FitnessSummary" component={FitnessSummary}  />
         <Route exact path="/FitnessLog" component={FitnessLog} />
         <Route exact path="/contact" component={Contact} />
+        <Route exact path="/Login" component={SignIn} />
         <Route component={noMatch} />
         </Switch>
       </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import {Table, Image, Container, Row, Col, Text } from 'react-bootstrap'
+import {Table, Image, Container, Row, Col } from 'react-bootstrap'
 
 function Blog() {
   return (
