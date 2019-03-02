@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import './navbarstyle.css';
+import { Link } from 'react-router-dom';
 
 class CustomNavbar extends React.Component {
 
@@ -11,16 +12,16 @@ render() {
     <Navbar expand="lg" id="navbar">
     <Navbar fixed="top" />
     <div class="col-md-3">
-      <Button size="large" className="btn-outline-secondary col-md-12" href="/myProfile" id="navbutton">My Profile</Button>
+      <Link to="/myProfile"> <Button size="large" className="btn-outline-secondary col-md-12"  id="navbutton">My Profile</Button> </Link>
       </div>
       <div class="col-md-3">
-      <Button size="large" className="btn-outline-secondary col-md-12" href="/FitnessLog" id="navbutton">Fitness Log</Button>
+      <Link to="FitnessLog"><Button size="large" className="btn-outline-secondary col-md-12" id="navbutton">Fitness Log</Button></Link>
       </div>
       <div class="col-md-3">
-      <Button size="large" className="btn-outline-secondary col-md-12" href="/FitnessSummary" id="navbutton">Fitness Summary</Button>
+      <Link to="FitnessSummary" ><Button size="large" className="btn-outline-secondary col-md-12" id="navbutton">Fitness Summary</Button></Link>
       </div>
       <div class="col-md-3">
-      <Button size="large" className="btn-outline-secondary col-md-12" href="/Login" id="navbutton">Sign In</Button>
+      <Link to="/Login"><Button size="large" className="btn-outline-secondary col-md-12" id="navbutton">Sign In</Button></Link>
       </div>
     </Navbar>
   );
