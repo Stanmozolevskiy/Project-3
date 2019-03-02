@@ -1,12 +1,11 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button, Modal, Container, Row, Col, Image} from 'react-bootstrap';
-import Carousel from 'react-bootstrap/Carousel'
+import {Button, Modal, Container, Image} from 'react-bootstrap';
+// import Carousel from 'react-bootstrap/Carousel'
 // import Modal from 'react-bootstrap/Modal';
 import Food from '../foodPage/Contact'
 import API from "../../../utils/API";
 import "../style.css"
-import ReactDOM from "react-dom";
 import banner from './image/FitnessFirst.png';
 
 class Login extends React.Component {
@@ -75,7 +74,7 @@ class Login extends React.Component {
     console.log(this.state.results)
     return (
       <div>
-        <Modal show={this.state.show} onHide={this.handleClose}>
+        {/* <Modal show={this.state.show} onHide={this.handleClose}>
 
           <Modal.Header closeButton>
             <Modal.Title>Login</Modal.Title>
@@ -103,7 +102,7 @@ class Login extends React.Component {
               Dismiss
               </Button>
           </Modal.Footer>
-        </Modal>
+        </Modal> */}
         <Container>
           <h2>Welcome to Fitness First. Your one stop, Fitness Shop </h2>
           <Image src={banner} />
