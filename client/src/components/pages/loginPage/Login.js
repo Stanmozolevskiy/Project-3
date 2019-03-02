@@ -1,10 +1,13 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
+import {Button, Modal, Container, Row, Col, Image} from 'react-bootstrap';
+import Carousel from 'react-bootstrap/Carousel'
+// import Modal from 'react-bootstrap/Modal';
 import Food from '../foodPage/Contact'
 import API from "../../../utils/API";
 import "../style.css"
+import ReactDOM from "react-dom";
+import banner from './image/FitnessFirst.png';
 
 class Login extends React.Component {
   constructor(props, context) {
@@ -71,8 +74,7 @@ class Login extends React.Component {
   render() {
     console.log(this.state.results)
     return (
-      <>
-
+      <div>
         <Modal show={this.state.show} onHide={this.handleClose}>
 
           <Modal.Header closeButton>
@@ -102,10 +104,50 @@ class Login extends React.Component {
               </Button>
           </Modal.Footer>
         </Modal>
+        <Container>
+          <h2>Welcome to Fitness First. Your one stop, Fitness Shop </h2>
+          <Image src={banner} />
+            {/* <Carousel>
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src={banner}
+      alt="First slide"
+    />
+    <Carousel.Caption>
+      <h3></h3>
+      <p></p>
+    </Carousel.Caption>
+  </Carousel.Item>
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src="holder.js/800x400?text=Second slide&bg=282c34"
+      alt="Third slide"
+    />
+
+    <Carousel.Caption>
+      <h3>Second slide label</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </Carousel.Caption>
+  </Carousel.Item>
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src="holder.js/800x400?text=Third slide&bg=20232a"
+      alt="Third slide"
+    />
+
+    <Carousel.Caption>
+      <h3>Third slide label</h3>
+      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+    </Carousel.Caption>
+  </Carousel.Item>
+</Carousel> */}
         <Food>
           <form>
             <div className="form-group">
-              <label htmlFor="exampleInputEmail1">Food Search</label>
+              <label htmlFor="exampleInputEmail1">Calorie Count Search</label>
               <input type="search" value={this.state.query} onChange={this.handleInputChange} name="query" className="form-control" />
             </div>
             <Button variant="primary" onClick={this.handleFoodSubmit}>Search</Button>
@@ -125,7 +167,8 @@ class Login extends React.Component {
             
           ))}
         </Food>
-      </>
+        </Container>
+      </div>
     );
   }
 }
