@@ -1,24 +1,100 @@
 import React from "react";
-
-
-
+import {Table, Image, Container, Row, Col, Text } from 'react-bootstrap'
 
 function Blog() {
   return (
     <div>
-      <h1>Blog Page</h1>
-      <p>
-        Donec a volutpat quam. Curabitur nec varius justo, sed rutrum ligula. Curabitur pellentesque
-        turpis sit amet eros iaculis, a mollis arcu dictum. Ut vel ante eget massa ornare placerat.
-        Etiam nisl orci, finibus sodales volutpat et, hendrerit ut dolor. Suspendisse porta dictum
-        nunc, sed pretium risus rutrum eget. Nam consequat, ligula in faucibus vestibulum, nisi
-        justo laoreet risus, luctus luctus mi lacus sit amet libero. Class aptent taciti sociosqu ad
-        litora torquent per conubia nostra, per inceptos himenaeos. Mauris pretium condimentum
-        tellus eget lobortis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec
-        placerat accumsan mi, ut congue neque placerat eu. Donec nec ipsum in velit pellentesque
-        vehicula sit amet at augue. Maecenas aliquam bibendum congue. Pellentesque semper, lectus
-        non ullamcorper iaculis, est ligula suscipit velit, sed bibendum turpis dui in sapien.
-      </p>
+      <Container>
+      <br/>
+        <Row>
+          <Col><Image src="https://images.unsplash.com/photo-1550977616-efc580084ac5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1038&q=80" fluid /></Col>
+          <Col><Image src="https://images.unsplash.com/photo-1540111970170-b1c4d4fbadaa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" fluid /></Col>
+          <Col><Image src="https://images.unsplash.com/photo-1533727937480-da3a97967e95?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80" fluid /></Col>
+        </Row>
+        <br/>
+        <Row>
+          <Col><h1>Exercise Log</h1> </Col>
+        </Row>
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Exercise</th>
+            <th>Time</th>
+            <th>Intensity</th>
+            <th>Calories Burned</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2/26/19</td>
+            <td>Run</td>
+            <td>45 minutes</td>
+            <td>Moderate</td>
+            <td> 475 calories</td>
+          </tr>
+          <tr>
+            <td>2/27/19</td>
+            <td>Bench Press</td>
+            <td>15 minutes</td>
+            <td>Low</td>
+            <td>70 calories</td>
+          </tr>
+          <tr>
+            <td>2/28/19</td>
+            <td>Pull ups</td>
+            <td>12 minutes</td>
+            <td>Moderate</td>
+            <td>56 calories</td>
+          </tr>
+        </tbody>
+      </Table>
+      <br/>
+      <Row>
+          <Col><h1>Food Log</h1> </Col>
+        </Row>
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Breakfast</th>
+            <th>Lunch</th>
+            <th>Dinner</th>
+            <th>Daily Calories</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2/26/19</td>
+            <td>Western omelette</td>
+            <td>Ham Sandwich</td>
+            <td>Beef Tacos</td>
+            <td> 3766 calories </td>
+          </tr>
+          <tr>
+            <td>2/27/19</td>
+            <td>Oatmeal</td>
+            <td>Garden Salad</td>
+            <td>Burger with fries</td>
+            <td>2755 calories</td>
+          </tr>
+          <tr>
+            <td>2/28/19</td>
+            <td>Waffles</td>
+            <td>Chicken caesar wrap</td>
+            <td>Spaghetti with meat sauce</td>
+            <td> 3166 calories</td>
+          </tr>
+        </tbody>
+      </Table>
+      <br/>
+      <Row>
+          <Col><Image src="https://images.unsplash.com/photo-1498557850523-fd3d118b962e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" fluid /></Col>
+          <Col><Image src="https://images.unsplash.com/photo-1543352634-a1c51d9f1fa7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" fluid /></Col>
+          <Col><Image src="https://images.unsplash.com/photo-1499192424706-82662b9911f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" fluid /></Col>
+        </Row>
+        <br/>
+      </Container>
     </div>
   );
 }

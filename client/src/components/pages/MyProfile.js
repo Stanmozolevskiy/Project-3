@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
-// import NavTabs frpm "../NavTabs";
+// import NavTabs frOm "../NavTabs";
 
 class User extends React.Component {
     constructor(props) {
