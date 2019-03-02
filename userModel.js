@@ -21,6 +21,14 @@ var UserSchema = new Schema({
       type: String
 
   },
+
+  age: {
+    type: String
+  },
+
+  fitnessGoal: {
+    type: String
+  },
   
   userPassword: {
     type: String,

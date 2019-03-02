@@ -74,7 +74,7 @@ class Login extends React.Component {
     console.log(this.state.results)
     return (
       <div>
-        <Modal show={this.state.show} onHide={this.handleClose}>
+        {/* <Modal show={this.state.show} onHide={this.handleClose}>
 
           <Modal.Header closeButton>
             <Modal.Title>Login</Modal.Title>
@@ -102,7 +102,7 @@ class Login extends React.Component {
               Dismiss
               </Button>
           </Modal.Footer>
-        </Modal>
+        </Modal> */}
         <Container>
           <h2>Welcome to Fitness First. Your one stop, Fitness Shop </h2>
           <Image src={banner} />

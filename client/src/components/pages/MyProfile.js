@@ -9,30 +9,52 @@ class User extends React.Component {
         this.state = {
             firstName: "",
             lastName: "",
+            age: "",
+            fitnessGoal: "",
             isFormValid: false
         }
     }
     onFirstNameChange = (e) => {
         e.preventDefault();
-        console.log("e " + e);
-        console.log("e.target.value: " + e.target.value);
-        const value = e.target.value;
-        console.log(value);
-
         this.setState({
-            firstName: value
+            firstName: e.target.value
+        })
+
+    }
+
+    onlastNameChange = (e) => {
+        e.preventDefault();
+        this.setState({
+            lastName: e.target.value
+        })
+
+    }
+
+    onAgeChange = (e) => {
+        e.preventDefault();
+        this.setState({
+            age: e.target.value
+        })
+
+    }
+
+    onFitnessGoalChange = (e) => {
+        e.preventDefault();
+        this.setState({
+            fitnessGoal: e.target.value
         })
 
     }
 
     handleSubmit = (event) => {
         const {firstName} = this.state
-        console.log("first name: " + firstName);
         event.preventDefault();
 
         const sendData = {
             firstName : this.state.firstName,
-            lastName: this.state.lastName 
+            lastName: this.state.lastName,
+            age: this.state.age,
+            fitnessGoal: this.state.fitnessGoal
         }
         axios({
             method: "POST",
@@ -78,11 +100,11 @@ class User extends React.Component {
 
                     <Form.Group controlId="formAge">
                         <Form.Label>Age</Form.Label>
-                        <Form.Control type="text" placeholder="Enter Age"/>
+                        <Form.Control type="text" value={this.state.age} onChange={this.onAgeChange} placeholder="Enter Age"/>
                     </Form.Group>
                     <Form.Group controlId="FitnessBox">
                     <Form.Label>Fitness Goal</Form.Label>
-                    <Form.Control as="textarea" rows="5" />
+                    <Form.Control as="textarea" value={this.state.fitnessGoal} onChange={this.onFitnessGoalChange} rows="5" />
                     </Form.Group>
                     <Button variant="primary" disabled={this.isFormValid()} onClick={this.handleSubmit}>
                         Submit
