@@ -1,59 +1,181 @@
+import { getFromStorage, setInStorage, } from '../../../utils/storage';
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button} from 'react-bootstrap';
+import {Form, Button} from 'react-bootstrap';
 import "../style.css"
 
 class SignIn extends React.Component {
-    constructor(props, context) {
-        super(props, context);
+    constructor(props) {
+        super(props);
 
         this.state = {
-            userName: "",
-            userPassword: "",
+            isLoading: true,
+            token: '',
+            signInError: '',
+            signInEmail: '',
+            signInPassword: '',
         };
+        this.onTextboxChangeSignInEmail = this.onTextboxChangeSignInEmail.bind(this);
+        this.onTextboxChangeSignInPassword = this.onTextboxChangeSignInPassword.bind(this);
+        this.onSignIn = this.onSignIn.bind(this);
+        this.logout = this.logout.bind(this);
+
+    }
+    componentDidMount() {
+        const obj = getFromStorage('the_main_app');
+        if (obj && obj.token) {
+            const { token } = obj;
+            // Verify token
+            fetch('/api/account/verify?token=' + token)
+                .then(res => res.json())
+                .then(json => {
+                    if (json.success) {
+                        this.setState({
+                            token,
+                            isLoading: false
+                        });
+                    } else {
+                        this.setState({
+                            isLoading: false,
+                        });
+                    }
+                });
+        } else {
+            this.setState({
+                isLoading: false,
+            });
+        }
+    }
+    onTextboxChangeSignInEmail(event) {
+        this.setState({
+            signInEmail: event.target.value,
+        });
     }
 
-    handleInputChange = event => {
-        // Getting the value and name of the input which triggered the change
-        const { name, value } = event.target;
+    onTextboxChangeSignInPassword(event) {
+        this.setState({
+            signInPassword: event.target.value,
+        });
+    }
+    onSignIn() {
+        // Grab state
+        const {
+            signInEmail,
+            signInPassword,
+        } = this.state;
 
         this.setState({
-            [name]: value
+            isLoading: true,
         });
-    };
-    handleFormSubmit = event => {
 
-        this.setState({ show: false });
+        // Post request to backend
+        fetch('/api/account/signin', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: signInEmail,
+                password: signInPassword,
+            }),
+        }).then(res => res.json())
+            .then(json => {
+                console.log('json', json);
+                if (json.success) {
+                    setInStorage('the_main_app', { token: json.token });
+                    this.setState({
+                        signInError: json.message,
+                        isLoading: false,
+                        signInPassword: '',
+                        signInEmail: '',
+                        token: json.token,
+                    });
+                } else {
+                    this.setState({
+                        signInError: json.message,
+                        isLoading: false,
+                    });
+                }
+            });
+    }
 
-        console.log(`${this.state.userName} ${this.state.userPassword}`);
+    logout() {
         this.setState({
-            userName: "",
-            userPassword: ""
+            isLoading: true,
         });
-        
-    };
+        const obj = getFromStorage('the_main_app');
+        if (obj && obj.token) {
+            const { token } = obj;
+            // Verify token
+            fetch('/api/account/logout?token=' + token)
+                .then(res => res.json())
+                .then(json => {
+                    if (json.success) {
+                        this.setState({
+                            token: '',
+                            isLoading: false
+                        });
+                    } else {
+                        this.setState({
+                            isLoading: false,
+                        });
+                    }
+                });
+        } else {
+            this.setState({
+                isLoading: false,
+            });
+        }
+    }
+
+
 
     render() {
+        const {
+            isLoading,
+            token,
+            signInError,
+            signInEmail,
+            signInPassword,
+        } = this.state;
+        if (isLoading) {
+            return (<div><p>Loading...</p></div>);
+        }
+
+        if (!token) {
+
+            return (
+                <div>
+                    <Form>
+                        {(signInError) ? (<p>{signInError}</p>) : (null)}
+                        <p>Sign In</p>
+                        <Form.Group controlId="formFirstName">
+                            <Form.Label>Enail</Form.Label>
+                            <Form.Control type="email" value={signInEmail} onChange={this.onTextboxChangeSignInEmail} placeholder="Email" />
+                            <Form.Text className="text-muted">
+                            </Form.Text>
+                        </Form.Group>
+                        <Form.Group controlId="formLasttName">
+                            <Form.Label>password</Form.Label>
+                            <Form.Control type="text" value={signInPassword} onChange={this.onTextboxChangeSignInPassword} placeholder="password" />
+                            <Form.Text className="text-muted">
+                            </Form.Text>
+                        </Form.Group>
+                        <br />
+                        <button onClick={this.onSignIn}>Sign In</button>
+                        <br />
+                    </Form>
+                </div>
+            )
+        }
+
         return (
             <div>
-                <h1 className="text-center">Sign In</h1>
-                <div className="form-group">
-                    <label htmlFor="exampleInputEmail1">Email address</label>
-                    <input type="email" value={this.state.userName} onChange={this.handleInputChange} name="userName" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Example@example.com" />
-                    <small id="emailHelp" className="form-text text-muted"></small>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="exampleInputPassword1">Password</label>
-                    <input type="password" value={this.state.userPassword} onChange={this.handleInputChange} name="userPassword" className="form-control" id="exampleInputPassword1" placeholder="Secret123" />
-                </div>
-
-                <Button variant="primary" onClick={this.handleFormSubmit}>
-                    Login
-                </Button>
+              <p>Welcome: Bring the Name of the user here</p>
+              <button onClick={this.logout}>Logout</button>
             </div>
-        )
-
-    }
-}
+          );
+        }
+      }
 
 export default SignIn;

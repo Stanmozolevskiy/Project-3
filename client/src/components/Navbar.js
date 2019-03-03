@@ -24,7 +24,7 @@ render() {
       <Link to="FitnessSummary" ><Button size="large" className="btn-outline-secondary col-md-12" id="navbutton">Fitness Summary</Button></Link>
       </div>
       <div class="col-md-2">
-      <Link to="/Login"><Button size="large" className="btn-outline-secondary col-md-12" id="navbutton">Sign In</Button></Link>
+      <Link to="/SignIn"><Button size="large" className="btn-outline-secondary col-md-12" id="navbutton">Sign In</Button></Link>
       </div>
     </Navbar>
   );

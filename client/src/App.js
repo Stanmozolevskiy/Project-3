@@ -8,7 +8,7 @@ import CustomNavbar from "./components/Navbar";
 import './appstyle.css';
 import Contact from "./components/pages/foodPage/Contact"
 import noMatch from "./components/pages/noMatch";
-import SignIn from "./components/pages/SignInPage/signIn"
+import SignIn from "./components/pages/SignInPage/SignIn"
 
 
 
@@ -18,13 +18,12 @@ function App() {
     <Router>
       <div>
         <CustomNavbar />
-        <Switch>
-        <Route exact path="/" component={Login} /> 
+        <Switch> 
         <Route exact path="/MyProfile" component={MyProfile} />
         <Route exact path="/FitnessSummary" component={FitnessSummary}  />
         <Route exact path="/FitnessLog" component={FitnessLog} />
         <Route exact path="/contact" component={Contact} />
-        <Route exact path="/Login" component={SignIn} />
+        <Route exact path="/SignIn" component={SignIn} />
         <Route component={noMatch} />
         </Switch>
       </div>
