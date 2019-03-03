@@ -1,119 +1,189 @@
-import React from "react";
+import React, { Component } from 'react';
+import 'whatwg-fetch';
 import { Form, Button } from "react-bootstrap";
-import axios from "axios";
+import { getFromStorage, setInStorage, } from '../../utils/storage';
 // import NavTabs frOm "../NavTabs";
 
 class User extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
+
         this.state = {
-            firstName: "",
-            lastName: "",
-            age: "",
-            fitnessGoal: "",
-            isFormValid: false
+            isLoading: true,
+            token: '',
+            signUpError: '',
+            signUpEmail: '',
+            signUpPassword: '',
+            // firstName: "",
+            // lastName: "",
+            // age: "",
+            // fitnessGoal: "",
+            // isFormValid: false
+        }
+
+
+        this.onTextboxChangeSignUpEmail = this.onTextboxChangeSignUpEmail.bind(this);
+        this.onTextboxChangeSignUpPassword = this.onTextboxChangeSignUpPassword.bind(this);
+
+        this.onSignUp = this.onSignUp.bind(this);
+        this.logout = this.logout.bind(this);
+    }
+    componentDidMount() {
+        const obj = getFromStorage('the_main_app');
+        if (obj && obj.token) {
+            const { token } = obj;
+            // Verify token
+            fetch('/api/account/verify?token=' + token)
+                .then(res => res.json())
+                .then(json => {
+                    if (json.success) {
+                        this.setState({
+                            token,
+                            isLoading: false
+                        });
+                    } else {
+                        this.setState({
+                            isLoading: false,
+                        });
+                    }
+                });
+        } else {
+            this.setState({
+                isLoading: false,
+            });
         }
     }
-    onFirstNameChange = (e) => {
-        e.preventDefault();
-        this.setState({
-            firstName: e.target.value
-        })
 
+    onTextboxChangeSignUpEmail(event) {
+        this.setState({
+            signUpEmail: event.target.value,
+        });
     }
 
-    onlastNameChange = (e) => {
-        e.preventDefault();
+    onTextboxChangeSignUpPassword(event) {
         this.setState({
-            lastName: e.target.value
-        })
+            signUpPassword: event.target.value,
+        });
+    }
+    onSignUp() {
+        // Grab state
+        const {
+            signUpEmail,
+            signUpPassword,
+        } = this.state;
 
+        this.setState({
+            isLoading: true,
+        });
+
+        // Post request to backend
+        fetch('/api/account/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: signUpEmail,
+                password: signUpPassword,
+            }),
+        }).then(res => res.json())
+            .then(json => {
+                console.log('json', json);
+                if (json.success) {
+                    this.setState({
+                        signUpError: json.message,
+                        isLoading: false,
+                        signUpEmail: '',
+                        signUpPassword: '',
+                    });
+                } else {
+                    this.setState({
+                        signUpError: json.message,
+                        isLoading: false,
+                    });
+                }
+            });
     }
 
-    onAgeChange = (e) => {
-        e.preventDefault();
+    logout() {
         this.setState({
-            age: e.target.value
-        })
-
-    }
-
-    onFitnessGoalChange = (e) => {
-        e.preventDefault();
-        this.setState({
-            fitnessGoal: e.target.value
-        })
-
-    }
-
-    handleSubmit = (event) => {
-        const {firstName} = this.state
-        event.preventDefault();
-
-        const sendData = {
-            firstName : this.state.firstName,
-            lastName: this.state.lastName,
-            age: this.state.age,
-            fitnessGoal: this.state.fitnessGoal
+            isLoading: true,
+        });
+        const obj = getFromStorage('the_main_app');
+        if (obj && obj.token) {
+            const { token } = obj;
+            // Verify token
+            fetch('/api/account/logout?token=' + token)
+                .then(res => res.json())
+                .then(json => {
+                    if (json.success) {
+                        this.setState({
+                            token: '',
+                            isLoading: false
+                        });
+                    } else {
+                        this.setState({
+                            isLoading: false,
+                        });
+                    }
+                });
+        } else {
+            this.setState({
+                isLoading: false,
+            });
         }
-        axios({
-            method: "POST",
-            url: "/api/submit",
-            data: sendData
-
-        })
-        .then(data => {
-            console.log(data);
-            console.log(data.config.data);
-        })
-
-    }
-
-    isFormValid = () => {
-        const {firstName} = this.state
-        console.log("firstName: " + firstName);
-        if (firstName !== "") {
-            return false;
-        }
-        return true
     }
 
     render() {
-        console.log("isFormValid: " + this.isFormValid());
-        const {firstName, lastName} = this.state;
-        console.log("first name: " + firstName);
+        const {
+            isLoading,
+            token,
+            signUpEmail,
+            signUpPassword,
+            signUpError,
+        } = this.state;
+        if (isLoading) {
+            return (<div><p>Loading...</p></div>);
+        }
+
+        if (!token) {
+
+            // console.log("isFormValid: " + this.isFormValid());
+            // const { firstName, lastName } = this.state;
+            // console.log("first name: " + firstName);
+            return (
+                <div>
+                    <Form>
+                       
+                        {(signUpError) ? (<p>{signUpError}</p>) : (null)}
+                        <p>Sign Up</p>
+                        <Form.Group controlId="formFirstName">
+                            <Form.Label>Enail</Form.Label>
+                            <Form.Control type="email" value={signUpEmail} onChange={this.onTextboxChangeSignUpEmail} placeholder="Email" />
+                            <Form.Text className="text-muted">
+                            </Form.Text>
+                        </Form.Group>
+                        <Form.Group controlId="formLasttName">
+                            <Form.Label>password</Form.Label>
+                            <Form.Control type="text" value={signUpPassword} onChange={this.onTextboxChangeSignUpPassword} placeholder="password" />
+                            <Form.Text className="text-muted">
+                            </Form.Text>
+                        </Form.Group>
+                        <br />
+                        <button onClick={this.onSignUp}>Sign UP</button>
+                        <br />
+                    </Form>
+                </div>
+            )
+        }
+
         return (
             <div>
-                <Form>
-                    <Form.Group controlId="formFirstName">
-                        <Form.Label>First Name</Form.Label>
-                        <Form.Control type="text" value={this.state.firstName} onChange={this.onFirstNameChange} placeholder="Enter First Name"/>
-                        <Form.Text className="text-muted">
-                        </Form.Text>
-                    </Form.Group>
-                    <Form.Group controlId="formLasttName">
-                        <Form.Label>Last Name</Form.Label>
-                        <Form.Control type="text" value={this.state.lastName} onChange={this.onlastNameChange} placeholder="Enter Last Name"/>
-                        <Form.Text className="text-muted">
-                        </Form.Text>
-                    </Form.Group>
-
-                    <Form.Group controlId="formAge">
-                        <Form.Label>Age</Form.Label>
-                        <Form.Control type="text" value={this.state.age} onChange={this.onAgeChange} placeholder="Enter Age"/>
-                    </Form.Group>
-                    <Form.Group controlId="FitnessBox">
-                    <Form.Label>Fitness Goal</Form.Label>
-                    <Form.Control as="textarea" value={this.state.fitnessGoal} onChange={this.onFitnessGoalChange} rows="5" />
-                    </Form.Group>
-                    <Button variant="primary" disabled={this.isFormValid()} onClick={this.handleSubmit}>
-                        Submit
-                    </Button>
-                </Form>
+              <p>Account </p>
+              <button onClick={this.logout}>Logout</button>
             </div>
-        )
-    }
+          );
+        }
+      }
 
-}
-
-export default User;
+    export default User;
