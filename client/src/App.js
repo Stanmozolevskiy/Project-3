@@ -19,6 +19,7 @@ function App() {
       <div>
         <CustomNavbar />
         <Switch> 
+        <Route exact path="/" component={Login} />
         <Route exact path="/MyProfile" component={MyProfile} />
         <Route exact path="/FitnessSummary" component={FitnessSummary}  />
         <Route exact path="/FitnessLog" component={FitnessLog} />

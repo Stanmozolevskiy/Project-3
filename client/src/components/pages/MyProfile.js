@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import 'whatwg-fetch';
-import { Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { getFromStorage, setInStorage, } from '../../utils/storage';
 // import NavTabs frOm "../NavTabs";
 
@@ -14,16 +14,20 @@ class User extends React.Component {
             signUpError: '',
             signUpEmail: '',
             signUpPassword: '',
-            // firstName: "",
-            // lastName: "",
-            // age: "",
-            // fitnessGoal: "",
-            // isFormValid: false
+            signUpFirstName: '',
+            signUpLastName: '',
+            signUpAge: '',
+            signUpFitnessGoal: '',
+            
         }
 
 
         this.onTextboxChangeSignUpEmail = this.onTextboxChangeSignUpEmail.bind(this);
         this.onTextboxChangeSignUpPassword = this.onTextboxChangeSignUpPassword.bind(this);
+        this.onTextboxChangeFirstName =  this.onTextboxChangeFirstName.bind(this);
+        this.onTextboxChangeLastName =  this.onTextboxChangeLastName.bind(this);
+        this.onTextboxChangeAge =  this.onTextboxChangeAge.bind(this);
+        this.onTextboxChangeFitnessGoal =  this.onTextboxChangeFitnessGoal.bind(this);
 
         this.onSignUp = this.onSignUp.bind(this);
         this.logout = this.logout.bind(this);
@@ -65,16 +69,40 @@ class User extends React.Component {
             signUpPassword: event.target.value,
         });
     }
+    onTextboxChangeFirstName(event) {
+        this.setState({
+            signUpFirstName: event.target.value,
+        });
+    }
+    onTextboxChangeLastName(event) {
+        this.setState({
+            signUpLastName: event.target.value,
+        });
+    }
+    onTextboxChangeAge(event) {
+        this.setState({
+            signUpAge: event.target.value,
+        });
+    }
+    onTextboxChangeFitnessGoal(event) {
+        this.setState({
+            signUpFitnessGoal: event.target.value,
+        });
+    }
     onSignUp() {
         // Grab state
         const {
             signUpEmail,
             signUpPassword,
+            signUpFirstName,
+            signUpLastName,
+            signUpAge,
+            signUpFitnessGoal,
         } = this.state;
-
         this.setState({
             isLoading: true,
         });
+
 
         // Post request to backend
         fetch('/api/account/signup', {
@@ -85,6 +113,10 @@ class User extends React.Component {
             body: JSON.stringify({
                 email: signUpEmail,
                 password: signUpPassword,
+                firstName: signUpFirstName,
+                lastName: signUpLastName,
+                age: signUpAge,
+                fitnessGoal: signUpFitnessGoal,
             }),
         }).then(res => res.json())
             .then(json => {
@@ -95,6 +127,10 @@ class User extends React.Component {
                         isLoading: false,
                         signUpEmail: '',
                         signUpPassword: '',
+                        signUpFirstName: '',
+                        signUpLastName: '',
+                        signUpAge: '',
+                        signUpFitnessGoal: '',
                     });
                 } else {
                     this.setState({
@@ -138,9 +174,13 @@ class User extends React.Component {
         const {
             isLoading,
             token,
+            signUpError,
             signUpEmail,
             signUpPassword,
-            signUpError,
+            signUpFirstName,
+            signUpLastName,
+            signUpAge,
+            signUpFitnessGoal
         } = this.state;
         if (isLoading) {
             return (<div><p>Loading...</p></div>);
@@ -148,24 +188,46 @@ class User extends React.Component {
 
         if (!token) {
 
-            // console.log("isFormValid: " + this.isFormValid());
-            // const { firstName, lastName } = this.state;
-            // console.log("first name: " + firstName);
+           
             return (
                 <div>
                     <Form>
                        
                         {(signUpError) ? (<p>{signUpError}</p>) : (null)}
                         <p>Sign Up</p>
-                        <Form.Group controlId="formFirstName">
-                            <Form.Label>Enail</Form.Label>
+                        <Form.Group controlId="firstName">
+                            <Form.Label>First Name</Form.Label>
+                            <Form.Control type="yexy" value={signUpFirstName} onChange={this.onTextboxChangeFirstName} placeholder="First Name" />
+                            <Form.Text className="text-muted">
+                            </Form.Text>
+                        </Form.Group>
+                        <Form.Group controlId="lastName">
+                            <Form.Label>Last Name</Form.Label>
+                            <Form.Control type="text" value={signUpLastName} onChange={this.onTextboxChangeLastName} placeholder="Last Name" />
+                            <Form.Text className="text-muted">
+                            </Form.Text>
+                        </Form.Group>
+                        <Form.Group controlId="age">
+                            <Form.Label>Your Age</Form.Label>
+                            <Form.Control type="number" value={signUpAge} onChange={this.onTextboxChangeAge} placeholder="Type Your Age" />
+                            <Form.Text className="text-muted">
+                            </Form.Text>
+                        </Form.Group>
+                        <Form.Group controlId="fitnessGoal">
+                            <Form.Label>Fitness Goal</Form.Label>
+                            <Form.Control type="test" value={signUpFitnessGoal} onChange={this.onTextboxChangeFitnessGoal} placeholder="Type Fitnes Goals" />
+                            <Form.Text className="text-muted">
+                            </Form.Text>
+                        </Form.Group>
+                        <Form.Group controlId="email">
+                            <Form.Label>Email</Form.Label>
                             <Form.Control type="email" value={signUpEmail} onChange={this.onTextboxChangeSignUpEmail} placeholder="Email" />
                             <Form.Text className="text-muted">
                             </Form.Text>
                         </Form.Group>
-                        <Form.Group controlId="formLasttName">
+                        <Form.Group controlId="password">
                             <Form.Label>password</Form.Label>
-                            <Form.Control type="text" value={signUpPassword} onChange={this.onTextboxChangeSignUpPassword} placeholder="password" />
+                            <Form.Control type="password" value={signUpPassword} onChange={this.onTextboxChangeSignUpPassword} placeholder="password" />
                             <Form.Text className="text-muted">
                             </Form.Text>
                         </Form.Group>

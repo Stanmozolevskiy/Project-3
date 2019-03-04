@@ -127,9 +127,6 @@ class SignIn extends React.Component {
             });
         }
     }
-
-
-
     render() {
         const {
             isLoading,
