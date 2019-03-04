@@ -8,12 +8,12 @@ module.exports = (app) => {
    */
   app.post('/api/account/signup', (req, res, next) => {
     const { body } = req;
-    const {
-      password
-    } = body;
-    let {
-      email
-    } = body;
+    const { password } = body;
+    let { email } = body;
+    let { firstName } = body;
+    let { lastName } = body;
+    let { age } = body;
+    let { fitnessGoal } = body;
 
     if (!email) {
       return res.send({
@@ -53,6 +53,10 @@ module.exports = (app) => {
       const newUser = new User();
 
       newUser.email = email;
+      newUser.firstName = firstName;
+      newUser.lastName = lastName;
+      newUser.age = age;
+      newUser.fitnessGoal = fitnessGoal;
       newUser.password = newUser.generateHash(password);
       newUser.save((err, user) => {
         if (err) {

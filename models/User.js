@@ -7,6 +7,22 @@ const UserSchema = new mongoose.Schema({
     type: String,
     default: ''
   },
+  firstName: {
+    type: String,
+    default: ''
+  },
+  lastName: {
+    type: String,
+    default: ''
+  },
+  age: {
+    type: Number,
+    default: ''
+  },
+  fitnessGoal: {
+    type: String,
+    default: ''
+  },
   password: {
     type: String,
     default: ''
