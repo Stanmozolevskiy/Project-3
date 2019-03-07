@@ -27,6 +27,12 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
+app.get('/name', (req, res) => {
+  mongoose.find().toArray( (err, results) => {
+    res.send(results)
+  });
+});
+
 // Start the API server
 app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);

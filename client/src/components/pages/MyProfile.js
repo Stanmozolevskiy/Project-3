@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import 'whatwg-fetch';
 import { Form } from "react-bootstrap";
 import { getFromStorage, setInStorage, } from '../../utils/storage';
-// import NavTabs frOm "../NavTabs";
+
 
 class User extends React.Component {
     constructor(props) {
@@ -20,8 +20,6 @@ class User extends React.Component {
             signUpFitnessGoal: '',
             
         }
-
-
         this.onTextboxChangeSignUpEmail = this.onTextboxChangeSignUpEmail.bind(this);
         this.onTextboxChangeSignUpPassword = this.onTextboxChangeSignUpPassword.bind(this);
         this.onTextboxChangeFirstName =  this.onTextboxChangeFirstName.bind(this);
@@ -57,6 +55,8 @@ class User extends React.Component {
             });
         }
     }
+
+    
 
     onTextboxChangeSignUpEmail(event) {
         this.setState({
