@@ -56,8 +56,6 @@ class User extends React.Component {
         }
     }
 
-    
-
     onTextboxChangeSignUpEmail(event) {
         this.setState({
             signUpEmail: event.target.value,

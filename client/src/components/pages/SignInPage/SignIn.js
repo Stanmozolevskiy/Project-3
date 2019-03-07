@@ -3,8 +3,7 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form } from 'react-bootstrap';
 import "../style.css"
-import { Link } from "react-router-dom";
-import API from "../../../utils/API";
+
 
 
 class SignIn extends React.Component {
@@ -16,7 +15,6 @@ class SignIn extends React.Component {
             token: '',
             signInError: '',
             signInEmail: '',
-            user: {},
             signInPassword: '',
         };
         this.onTextboxChangeSignInEmail = this.onTextboxChangeSignInEmail.bind(this);
@@ -51,8 +49,6 @@ class SignIn extends React.Component {
         }
 
     }
-
-
     onTextboxChangeSignInEmail(event) {
         this.setState({
             signInEmail: event.target.value,
@@ -90,6 +86,7 @@ class SignIn extends React.Component {
                 console.log('json', json);
                 if (json.success) {
                     setInStorage('the_main_app', { token: json.token });
+                    window.location = '/user/' + json.userId 
                     this.setState({
                         signInError: json.message,
                         isLoading: false,
@@ -166,10 +163,10 @@ class SignIn extends React.Component {
                             </Form.Text>
                         </Form.Group>
                         <br />
-       
+                       
                         <button href onClick={this.onSignIn}>Sign In</button>
                         <br />
-
+                      
                     </Form>
                 </div>
             )
