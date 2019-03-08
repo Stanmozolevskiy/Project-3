@@ -1,5 +1,50 @@
 import React from "react";
 import {Table, Image, Container, Row, Col } from 'react-bootstrap'
+import ReactTable from "react-table";
+
+class Table extends React.componet {
+  contructor(props) {
+    super(props);
+
+    this.state = {
+      posts: []
+    }
+  }
+    render() {
+      // <div>
+        const columns = [
+          {
+            Header: "UserID",
+            accessor: "userID"
+          },
+          {
+            Header: "Date",
+            accessor: "date"
+          },
+          {
+            Header: "Exercise",
+            accessor: "exercise"
+          },
+          {
+            Headwer: "Time",
+            accessor: "time"
+          },
+          {
+            Header: "Intensity",
+            accessor: "intensity"
+          },
+          {
+            Header: "Calories Burned",
+            accessor: "caloriesBurned"
+          }
+      ]
+        <ReactTable
+          columns={columns}
+        >
+        </ReactTable>
+        // </div>
+    }
+}
 
 function Blog() {
   return (
@@ -100,3 +145,4 @@ function Blog() {
 }
 
 export default Blog;
+export default Table;
