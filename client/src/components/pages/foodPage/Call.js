@@ -15,4 +15,26 @@ const food = search => {
         });
         
 }
+// function food(search) {
+//     const axios = require('axios');
+//     axios.post('https://trackapi.nutritionix.com/v2/natural/exercise', {
+//         headers: {
+//             "x-app-id": "4fd1d55d",
+//             "x-app-key": "9788c6b183e3995fbc144d4b1b300850",
+//             "Content-Type": "application/json"
+//         },
+//         body: {
+//             "query": "ran 3 miles",
+//             "gender": "female",
+//             "weight_kg": 72.5,
+//             "height_cm": 167.64,
+//             "age": 30
+
+//         }
+//     }).then(res => {
+//         console.log(res)
+//     })
+
+// }
+// food()
 module.exports = food

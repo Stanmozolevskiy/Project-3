@@ -10,9 +10,6 @@ import Contact from "./components/pages/foodPage/Contact"
 import noMatch from "./components/pages/noMatch";
 import SignIn from "./components/pages/SignInPage/signIn"
 
-
-
-
 function App() {
   return (
     <Router>

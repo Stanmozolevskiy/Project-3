@@ -1,7 +1,8 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button} from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import "../style.css"
+import { Redirect } from 'react-router-dom'
 
 class SignIn extends React.Component {
     constructor(props, context) {
@@ -10,6 +11,7 @@ class SignIn extends React.Component {
         this.state = {
             userName: "",
             userPassword: "",
+            redirect: false
         };
     }
 
@@ -21,16 +23,18 @@ class SignIn extends React.Component {
             [name]: value
         });
     };
-    handleFormSubmit = event => {
-
-        this.setState({ show: false });
-
+    handleFormSubmit = e => {
+        e.preventDefault();
         console.log(`${this.state.userName} ${this.state.userPassword}`);
         this.setState({
             userName: "",
-            userPassword: ""
+            userPassword: "",
+            redirect: true
         });
-        
+        if (this.state.redirect) {
+            return <Redirect to='/' />
+        }
+
     };
 
     render() {
