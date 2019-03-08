@@ -1,8 +1,10 @@
 import { getFromStorage, setInStorage, } from '../../../utils/storage';
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Form, Button} from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import "../style.css"
+
+
 
 class SignIn extends React.Component {
     constructor(props) {
@@ -45,6 +47,7 @@ class SignIn extends React.Component {
                 isLoading: false,
             });
         }
+
     }
     onTextboxChangeSignInEmail(event) {
         this.setState({
@@ -83,6 +86,7 @@ class SignIn extends React.Component {
                 console.log('json', json);
                 if (json.success) {
                     setInStorage('the_main_app', { token: json.token });
+                    window.location = '/user/' + json.userId 
                     this.setState({
                         signInError: json.message,
                         isLoading: false,
@@ -159,8 +163,10 @@ class SignIn extends React.Component {
                             </Form.Text>
                         </Form.Group>
                         <br />
-                        <button onClick={this.onSignIn}>Sign In</button>
+                       
+                        <button href onClick={this.onSignIn}>Sign In</button>
                         <br />
+                      
                     </Form>
                 </div>
             )
@@ -168,11 +174,12 @@ class SignIn extends React.Component {
 
         return (
             <div>
-              <p>Welcome: Bring the Name of the user here</p>
-              <button onClick={this.logout}>Logout</button>
+                <p>Welcome:
+                </p>
+                <button onClick={this.logout}>Logout</button>
             </div>
-          );
-        }
-      }
+        );
+    }
+}
 
 export default SignIn;
