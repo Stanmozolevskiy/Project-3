@@ -1,6 +1,8 @@
 import React from "react";
 import {Table, Image, Container, Row, Col } from 'react-bootstrap'
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
+import jobs from "../job.json"
+console.log(jobs);
 // or in ECMAScript 5
 // import ReactBSTable from 'react-bootstrap-table';  
 // var BootstrapTable = ReactBSTable.BootstrapTable;
@@ -40,7 +42,10 @@ function jobStatusValidator(value, row) {
 
 class EditTypeTable extends React.Component {
   render() {
-    const jobs = [];
+
+    const jsondata = JSON.parse(jobs);
+    console.log(jsondata);
+    console.log(jobs);
     return (
       <BootstrapTable data={ jobs } cellEdit={ cellEditProp } insertRow={ true }>
           <TableHeaderColumn dataField='id' isKey={ true }>Job ID</TableHeaderColumn>

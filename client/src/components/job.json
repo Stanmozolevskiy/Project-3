@@ -1,0 +1,38 @@
+[
+    {
+      "id": 1,
+      "status": "SpongeBob",
+      "name": "test",
+      "type": "Fry Cook",
+      "active": "A Pineapple Under the Sea"
+    },
+    {
+      "id": 2,
+      "status": "Krabby Patty",
+      "name": "test2",
+      "type": "Fry Cook",
+      "active": "A Pineapple Under the Sea"
+    },
+    {
+      "id": 3,
+      "status": "Squidward",
+      "name": "test3",
+      "type": "Fry Cook",
+      "active": "A Pineapple Under the Sea"
+    },
+    {
+      "id": 4,
+      "status": "Sandy",
+      "name": "test4",
+      "type": "Fry Cook",
+      "active": "A Pineapple Under the Sea"
+    },
+    {
+      "id": 5,
+      "status": "Patrick",
+      "name": "test5",
+      "type": "Fry Cook",
+      "active": "A Pineapple Under the Sea"
+    }
+  ]
+  
