@@ -42,8 +42,8 @@ function jobStatusValidator(value, row) {
 
 class EditTypeTable extends React.Component {
   render() {
-
-    const jsondata = JSON.parse(jobs);
+    const jsondata = jobs;
+    // const jsondata = JSON.parse(jobs);
     console.log(jsondata);
     console.log(jobs);
     return (
