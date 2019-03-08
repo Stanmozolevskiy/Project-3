@@ -73,3 +73,28 @@
     height: 200px;
     /* background-color: purple; */
   }
+  #fooddata {
+    background-color: rgb(206, 216, 219);
+    margin: 10px;
+    font-size: 24px;
+    border: 0px;
+  }
+  #foodsearch {
+    margin: 10px;
+    text-align: center;
+  }
+  #foodsearchbutton {
+   text-align: center;
+    
+  }
+  #searchlabel {
+    font-size: 30px;
+  }
+  #searchbutton {
+      background-color: rgb(206, 216, 219);
+      color: rgb(126, 126, 126);
+      border: 0px;
+  }
+  #searchbutton:active {
+    background-color: gray;
+}

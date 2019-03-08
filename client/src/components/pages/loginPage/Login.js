@@ -1,6 +1,6 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button, Modal, Container, Image} from 'react-bootstrap';
+import {Button, Modal, Card, Container, Image} from 'react-bootstrap';
 // import Carousel from 'react-bootstrap/Carousel'
 // import Modal from 'react-bootstrap/Modal';
 import Food from '../foodPage/Contact'
@@ -104,7 +104,7 @@ class Login extends React.Component {
           </Modal.Footer>
         </Modal> */}
         <Container>
-          <h2>Welcome to Fitness First. Your one stop, Fitness Shop </h2>
+          <h2>Welcome to Fitness First. Your one stop, Fitness Workshop </h2>
           <Image src={banner} />
             {/* <Carousel>
   <Carousel.Item>
@@ -145,13 +145,16 @@ class Login extends React.Component {
 </Carousel> */}
         <Food>
           <form>
-            <div className="form-group">
-              <label htmlFor="exampleInputEmail1">Calorie Count Search</label>
-              <input type="search" value={this.state.query} onChange={this.handleInputChange} name="query" className="form-control" />
+            <div className="form-group" id="foodsearch">
+              <label htmlFor="exampleInputEmail1" id="searchlabel">Calorie Count Search</label>
+              <input type="search" value={this.state.query} placeholder="Enter a food name here" onChange={this.handleInputChange} name="query" className="form-control" />
             </div>
-            <Button variant="primary" onClick={this.handleFoodSubmit}>Search</Button>
+            <div id="foodsearchbutton">
+            <Button id="searchbutton" onClick={this.handleFoodSubmit}>Search</Button>
+            </div>
           </form>
           {this.state.results.map((each, i) => (
+            <Card id="fooddata">
             <div  className="foodContainer">
               <div className="eachName">
               <ul>
@@ -162,6 +165,7 @@ class Login extends React.Component {
               </ul>
               </div>
             </div>
+            </Card>
             
             
           ))}
