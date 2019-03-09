@@ -1,8 +1,9 @@
 import { getFromStorage, setInStorage, } from '../../../utils/storage';
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Form, Button} from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import "../style.css"
+import API from "../../../utils/API";
 
 class SignIn extends React.Component {
     constructor(props) {
@@ -14,6 +15,8 @@ class SignIn extends React.Component {
             signInError: '',
             signInEmail: '',
             signInPassword: '',
+            user: {},
+
         };
         this.onTextboxChangeSignInEmail = this.onTextboxChangeSignInEmail.bind(this);
         this.onTextboxChangeSignInPassword = this.onTextboxChangeSignInPassword.bind(this);
@@ -39,7 +42,15 @@ class SignIn extends React.Component {
                             isLoading: false,
                         });
                     }
+                    // !! call for the user's profile data
+                    API.getUser(json.userId)
+                        .then(res => this.setState({ user: res.data }))
+                        .catch(err => console.log(err));
+                    //!!
+                    console.log(json)
                 });
+
+            console.log('loaded')
         } else {
             this.setState({
                 isLoading: false,
@@ -80,8 +91,13 @@ class SignIn extends React.Component {
             }),
         }).then(res => res.json())
             .then(json => {
-                console.log('json', json);
+                // console.log('json', json);
                 if (json.success) {
+                    // !! call for the user's profile data
+                    API.getUser(json.userId)
+                        .then(res => this.setState({ user: res.data }))
+                        .catch(err => console.log(err));
+                    //!!
                     setInStorage('the_main_app', { token: json.token });
                     this.setState({
                         signInError: json.message,
@@ -142,10 +158,10 @@ class SignIn extends React.Component {
         if (!token) {
 
             return (
-                <div>
+                <div id="signinform">
                     <Form>
                         {(signInError) ? (<p>{signInError}</p>) : (null)}
-                        <p>Sign In</p>
+                        <h2>Sign In</h2>
                         <Form.Group controlId="formFirstName">
                             <Form.Label>Enail</Form.Label>
                             <Form.Control type="email" value={signInEmail} onChange={this.onTextboxChangeSignInEmail} placeholder="Email" />
@@ -159,8 +175,10 @@ class SignIn extends React.Component {
                             </Form.Text>
                         </Form.Group>
                         <br />
-                        <button onClick={this.onSignIn}>Sign In</button>
+
+                        <button href onClick={this.onSignIn}>Sign In</button>
                         <br />
+
                     </Form>
                 </div>
             )
@@ -168,11 +186,23 @@ class SignIn extends React.Component {
 
         return (
             <div>
-              <p>Welcome: Bring the Name of the user here</p>
-              <button onClick={this.logout}>Logout</button>
+                <p>Welcome:
+                <h4>
+
+                        {this.state.user.firstName}
+                        <br />
+                        <br />
+                        {this.state.user.lastName}
+                        <br />
+                        <br />
+                        {this.state.user.fitnessGoal}
+                    </h4>
+
+                </p>
+                <button onClick={this.logout}>Logout</button>
             </div>
-          );
-        }
-      }
+        );
+    }
+}
 
 export default SignIn;

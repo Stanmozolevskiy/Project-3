@@ -3,7 +3,7 @@ const UserSession = require('../../models/UserSession');
 
 
 module.exports = (app) => {
-  /*
+  /*  
    * Sign up
    */
   app.post('/api/account/signup', (req, res, next) => {
@@ -71,18 +71,14 @@ module.exports = (app) => {
         });
       });
     });
-    
+
 
   });
 
   app.post('/api/account/signin', (req, res, next) => {
     const { body } = req;
-    const {
-      password
-    } = body;
-    let {
-      email
-    } = body;
+    const { password } = body;
+    let { email } = body;
 
 
     if (!email) {
@@ -141,7 +137,8 @@ module.exports = (app) => {
         return res.send({
           success: true,
           message: 'Valid sign in',
-          token: doc._id
+          token: doc._id,
+          userId: doc.userId
         });
       });
     });
@@ -166,7 +163,6 @@ module.exports = (app) => {
           message: 'Error: Server error'
         });
       }
-
       if (sessions.length != 1) {
         return res.send({
           success: false,
@@ -175,7 +171,8 @@ module.exports = (app) => {
       } else {
         return res.send({
           success: true,
-          message: 'Good'
+          message: 'Good',
+          userId: sessions[0].userId
         });
       }
     });
@@ -193,22 +190,36 @@ module.exports = (app) => {
       _id: token,
       isDeleted: false
     }, {
-      $set: {
-        isDeleted:true
-      }
-    }, null, (err, sessions) => {
-      if (err) {
-        console.log(err);
+        $set: {
+          isDeleted: true
+        }
+      }, null, (err, sessions) => {
+        if (err) {
+          console.log(err);
+          return res.send({
+            success: false,
+            message: 'Error: Server error'
+          });
+        }
+      
         return res.send({
-          success: false,
-          message: 'Error: Server error'
+          success: true,
+          message: 'Good',
         });
-      }
-
-      return res.send({
-        success: true,
-        message: 'Good'
       });
+  });
+
+  // Find User By ID
+  app.get('/user/:id', (req, res) => {
+    let id = req.params.id;
+    User.findById(id, function (err, result) {
+      if (err) {
+        // console.log(err);
+      }
+      else {
+        res.json(result);
+      }
     });
   });
+
 };

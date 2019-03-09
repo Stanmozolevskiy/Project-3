@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import 'whatwg-fetch';
 import { Form } from "react-bootstrap";
-import { getFromStorage, setInStorage, } from '../../utils/storage';
-// import NavTabs frOm "../NavTabs";
+import { getFromStorage, } from '../../utils/storage';
+
 
 class User extends React.Component {
     constructor(props) {
@@ -20,8 +20,6 @@ class User extends React.Component {
             signUpFitnessGoal: '',
             
         }
-
-
         this.onTextboxChangeSignUpEmail = this.onTextboxChangeSignUpEmail.bind(this);
         this.onTextboxChangeSignUpPassword = this.onTextboxChangeSignUpPassword.bind(this);
         this.onTextboxChangeFirstName =  this.onTextboxChangeFirstName.bind(this);
@@ -57,6 +55,8 @@ class User extends React.Component {
             });
         }
     }
+
+    
 
     onTextboxChangeSignUpEmail(event) {
         this.setState({
@@ -190,11 +190,11 @@ class User extends React.Component {
 
            
             return (
-                <div>
+                <div id="profileform">
                     <Form>
                        
                         {(signUpError) ? (<p>{signUpError}</p>) : (null)}
-                        <p>Sign Up</p>
+                        <h2>Sign Up</h2>
                         <Form.Group controlId="firstName">
                             <Form.Label>First Name</Form.Label>
                             <Form.Control type="yexy" value={signUpFirstName} onChange={this.onTextboxChangeFirstName} placeholder="First Name" />
@@ -226,8 +226,8 @@ class User extends React.Component {
                             </Form.Text>
                         </Form.Group>
                         <Form.Group controlId="password">
-                            <Form.Label>password</Form.Label>
-                            <Form.Control type="password" value={signUpPassword} onChange={this.onTextboxChangeSignUpPassword} placeholder="password" />
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control type="password" value={signUpPassword} onChange={this.onTextboxChangeSignUpPassword} placeholder="Password" />
                             <Form.Text className="text-muted">
                             </Form.Text>
                         </Form.Group>
