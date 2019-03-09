@@ -3,8 +3,7 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form } from 'react-bootstrap';
 import "../style.css"
-
-
+import API from "../../../utils/API";
 
 class SignIn extends React.Component {
     constructor(props) {
@@ -16,6 +15,8 @@ class SignIn extends React.Component {
             signInError: '',
             signInEmail: '',
             signInPassword: '',
+            user: {},
+
         };
         this.onTextboxChangeSignInEmail = this.onTextboxChangeSignInEmail.bind(this);
         this.onTextboxChangeSignInPassword = this.onTextboxChangeSignInPassword.bind(this);
@@ -47,7 +48,6 @@ class SignIn extends React.Component {
                 isLoading: false,
             });
         }
-
     }
     onTextboxChangeSignInEmail(event) {
         this.setState({
@@ -86,7 +86,12 @@ class SignIn extends React.Component {
                 console.log('json', json);
                 if (json.success) {
                     setInStorage('the_main_app', { token: json.token });
-                    window.location = '/user/' + json.userId 
+
+                    // !! call for the user's profile data
+                    API.getUser(json.userId )
+                        .then(res =>this.setState({ user: res.data }))
+                        .catch(err => console.log(err));
+                    //!!
                     this.setState({
                         signInError: json.message,
                         isLoading: false,
@@ -163,10 +168,10 @@ class SignIn extends React.Component {
                             </Form.Text>
                         </Form.Group>
                         <br />
-                       
+
                         <button href onClick={this.onSignIn}>Sign In</button>
                         <br />
-                      
+
                     </Form>
                 </div>
             )
@@ -175,6 +180,17 @@ class SignIn extends React.Component {
         return (
             <div>
                 <p>Welcome:
+                <h4>
+                
+               {this.state.user.firstName}
+               <br/>
+               <br/>
+               {this.state.user.lastName}
+               <br/>
+               <br/>
+               {this.state.user.fitnessGoal}
+              </h4>
+
                 </p>
                 <button onClick={this.logout}>Logout</button>
             </div>

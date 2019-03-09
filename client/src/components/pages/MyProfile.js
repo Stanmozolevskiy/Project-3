@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import 'whatwg-fetch';
 import { Form } from "react-bootstrap";
-import { getFromStorage, setInStorage, } from '../../utils/storage';
+import { getFromStorage, } from '../../utils/storage';
 
 
 class User extends React.Component {
@@ -55,6 +55,8 @@ class User extends React.Component {
             });
         }
     }
+
+    
 
     onTextboxChangeSignUpEmail(event) {
         this.setState({
