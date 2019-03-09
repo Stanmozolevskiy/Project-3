@@ -98,3 +98,6 @@
   #searchbutton:active {
     background-color: gray;
 }
+.smaller{
+  width:200px
+}

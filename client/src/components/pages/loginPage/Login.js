@@ -1,6 +1,6 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button, Modal, Card, Container, Image} from 'react-bootstrap';
+import { Button, Modal, Card, Container, Image } from 'react-bootstrap';
 import Food from '../foodPage/Contact'
 import API from "../../../utils/API";
 import "../style.css"
@@ -19,7 +19,8 @@ class Login extends React.Component {
       userPassword: "",
       show: true,
       query: "",
-      results: []
+      results: [],
+      photo: []
     };
   }
 
@@ -63,9 +64,16 @@ class Login extends React.Component {
         this.setState({ results: response.data.hits })
       });
   }
+  async searchPhoto(query) {
+    await API.photo(query)
+      .then(res => {
+        this.setState({ photo: res.data.branded })
+      })
+  }
   handleFoodSubmit = (event) => {
     event.preventDefault();
     this.searchFood(this.state.query)
+    this.searchPhoto(this.state.query)
 
   }
   render() {
@@ -104,7 +112,7 @@ class Login extends React.Component {
         <Container>
           <h2>Welcome to Fitness First. Your one stop, Fitness Workshop </h2>
           <Image src={banner} />
-            {/* <Carousel>
+          {/* <Carousel>
   <Carousel.Item>
     <img
       className="d-block w-100"
@@ -141,33 +149,44 @@ class Login extends React.Component {
     </Carousel.Caption>
   </Carousel.Item>
 </Carousel> */}
-        <Food>
-          <form>
-            <div className="form-group" id="foodsearch">
-              <label htmlFor="exampleInputEmail1" id="searchlabel">Calorie Count Search</label>
-              <input type="search" value={this.state.query} placeholder="Enter a food name here" onChange={this.handleInputChange} name="query" className="form-control" />
-            </div>
-            <div id="foodsearchbutton">
-            <Button id="searchbutton" onClick={this.handleFoodSubmit}>Search</Button>
-            </div>
-          </form>
-          {this.state.results.map((each, i) => (
-            <Card id="fooddata">
-            <div  className="foodContainer">
-              <div className="eachName">
-              <ul>
-                <li className="we" key={i} >{"Food: " + each.fields.item_name}</li>
-                <li className="we" key={i} >{"Brand: " + each.fields.brand_name}</li>
-                <li className="we" key={i} >{"Calories: " + each.fields.nf_calories}</li>
-                <li className="we" key={i} >{"Serving Size: " + each.fields.nf_serving_size_qty}</li>
-              </ul>
+          <Food>
+            <form>
+              <div className="form-group" id="foodsearch">
+                <label htmlFor="exampleInputEmail1" id="searchlabel">Calorie Count Search</label>
+                <input type="search" value={this.state.query} placeholder="Enter a food name here" onChange={this.handleInputChange} name="query" className="form-control" />
               </div>
-            </div>
-            </Card>
-            
-            
-          ))}
-        </Food>
+              <div id="foodsearchbutton">
+                <Button id="searchbutton" onClick={this.handleFoodSubmit}>Search</Button>
+              </div>
+            </form>
+            {this.state.photo.map((each, i) => (
+              <div key={i}>
+                <div>
+                  <ul>
+                    {console.log(each)}
+                    <img className="smaller" src={each.photo.thumb}></img>
+                    <li className="we">{"Food Name: " + each.food_name }</li>
+                    <li className="we">{"Brand Name: " + each.brand_name }</li>
+                    <li className="we">{"Calories: " + each.nf_calories }</li>
+                  </ul>
+                </div>
+              </div>
+            ))}
+            {/* {this.state.results.map((each, i) => (
+              <Card id="fooddata">
+                <div className="foodContainer">
+                  <div className="eachName">
+                    <ul>
+                      <li className="we" key={i} >{"Food: " + each.fields.item_name}</li>
+                      <li className="we" key={i} >{"Brand: " + each.fields.brand_name}</li>
+                      <li className="we" key={i} >{"Calories: " + each.fields.nf_calories}</li>
+                      <li className="we" key={i} >{"Serving Size: " + each.fields.nf_serving_size_qty}</li>
+                    </ul>
+                  </div>
+                </div>
+              </Card>
+            ))} */}
+          </Food>
         </Container>
       </div>
     );
