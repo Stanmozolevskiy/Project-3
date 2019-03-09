@@ -42,7 +42,15 @@ class SignIn extends React.Component {
                             isLoading: false,
                         });
                     }
+                    // !! call for the user's profile data
+                    API.getUser(json.userId)
+                        .then(res => this.setState({ user: res.data }))
+                        .catch(err => console.log(err));
+                    //!!
+                    console.log(json)
                 });
+
+            console.log('loaded')
         } else {
             this.setState({
                 isLoading: false,
@@ -83,15 +91,14 @@ class SignIn extends React.Component {
             }),
         }).then(res => res.json())
             .then(json => {
-                console.log('json', json);
+                // console.log('json', json);
                 if (json.success) {
-                    setInStorage('the_main_app', { token: json.token });
-
                     // !! call for the user's profile data
-                    API.getUser(json.userId )
-                        .then(res =>this.setState({ user: res.data }))
+                    API.getUser(json.userId)
+                        .then(res => this.setState({ user: res.data }))
                         .catch(err => console.log(err));
                     //!!
+                    setInStorage('the_main_app', { token: json.token });
                     this.setState({
                         signInError: json.message,
                         isLoading: false,
@@ -181,15 +188,15 @@ class SignIn extends React.Component {
             <div>
                 <p>Welcome:
                 <h4>
-                
-               {this.state.user.firstName}
-               <br/>
-               <br/>
-               {this.state.user.lastName}
-               <br/>
-               <br/>
-               {this.state.user.fitnessGoal}
-              </h4>
+
+                        {this.state.user.firstName}
+                        <br />
+                        <br />
+                        {this.state.user.lastName}
+                        <br />
+                        <br />
+                        {this.state.user.fitnessGoal}
+                    </h4>
 
                 </p>
                 <button onClick={this.logout}>Logout</button>

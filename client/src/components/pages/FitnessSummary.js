@@ -11,7 +11,6 @@ function getRanValue () {
   console.log(rand);
 }
 
- 
 function FitnessSummary() {
   return (
     <div>
