@@ -7,6 +7,7 @@ console.log(jobs);
 // import ReactBSTable from 'react-bootstrap-table';  
 // var BootstrapTable = ReactBSTable.BootstrapTable;
 // var TableHeaderColumn = ReactBSTable.TableHeaderColumn;
+//test
 
 const jobTypes = [ 'A', 'B', 'C', 'D' ];
 
