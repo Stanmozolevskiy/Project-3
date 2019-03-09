@@ -98,3 +98,9 @@
   #searchbutton:active {
     background-color: gray;
 }
+#profileform {
+  margin: 20px;
+}
+#signinform {
+  margin: 20px;
+}
