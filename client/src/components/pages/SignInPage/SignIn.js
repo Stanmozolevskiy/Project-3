@@ -151,10 +151,10 @@ class SignIn extends React.Component {
         if (!token) {
 
             return (
-                <div>
+                <div id="signinform">
                     <Form>
                         {(signInError) ? (<p>{signInError}</p>) : (null)}
-                        <p>Sign In</p>
+                        <h2>Sign In</h2>
                         <Form.Group controlId="formFirstName">
                             <Form.Label>Enail</Form.Label>
                             <Form.Control type="email" value={signInEmail} onChange={this.onTextboxChangeSignInEmail} placeholder="Email" />

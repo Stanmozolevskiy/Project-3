@@ -190,11 +190,11 @@ class User extends React.Component {
 
            
             return (
-                <div>
+                <div id="profileform">
                     <Form>
                        
                         {(signUpError) ? (<p>{signUpError}</p>) : (null)}
-                        <p>Sign Up</p>
+                        <h2>Sign Up</h2>
                         <Form.Group controlId="firstName">
                             <Form.Label>First Name</Form.Label>
                             <Form.Control type="yexy" value={signUpFirstName} onChange={this.onTextboxChangeFirstName} placeholder="First Name" />
@@ -226,8 +226,8 @@ class User extends React.Component {
                             </Form.Text>
                         </Form.Group>
                         <Form.Group controlId="password">
-                            <Form.Label>password</Form.Label>
-                            <Form.Control type="password" value={signUpPassword} onChange={this.onTextboxChangeSignUpPassword} placeholder="password" />
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control type="password" value={signUpPassword} onChange={this.onTextboxChangeSignUpPassword} placeholder="Password" />
                             <Form.Text className="text-muted">
                             </Form.Text>
                         </Form.Group>
