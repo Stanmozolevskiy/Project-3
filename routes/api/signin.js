@@ -163,7 +163,6 @@ module.exports = (app) => {
           message: 'Error: Server error'
         });
       }
-
       if (sessions.length != 1) {
         return res.send({
           success: false,
@@ -172,7 +171,8 @@ module.exports = (app) => {
       } else {
         return res.send({
           success: true,
-          message: 'Good'
+          message: 'Good',
+          userId: sessions[0].userId
         });
       }
     });
@@ -201,10 +201,10 @@ module.exports = (app) => {
             message: 'Error: Server error'
           });
         }
-
+      
         return res.send({
           success: true,
-          message: 'Good'
+          message: 'Good',
         });
       });
   });
@@ -214,7 +214,7 @@ module.exports = (app) => {
     let id = req.params.id;
     User.findById(id, function (err, result) {
       if (err) {
-        console.log(err);
+        // console.log(err);
       }
       else {
         res.json(result);
