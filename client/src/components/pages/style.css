@@ -101,3 +101,9 @@
 .smaller{
   width:200px
 }
+#profileform {
+  margin: 20px;
+}
+#signinform {
+  margin: 20px;
+}
