@@ -15,13 +15,25 @@ export default {
   },
 
   photo: function (query) {
-    const axios = require('axios');
     return axios.get("https://trackapi.nutritionix.com/v2/search/instant?query=" + query, {
       headers: {
         "x-app-id": "4fd1d55d",
         "x-app-key": "9788c6b183e3995fbc144d4b1b300850"
       }
     })
+  },
+
+  exer: function (query) {
+    return axios.post("https://trackapi.nutritionix.com/v2/natural/exercise", {
+      query
+    }, {
+        headers: {
+          "x-app-id": "4fd1d55d",
+          "x-app-key": "9788c6b183e3995fbc144d4b1b300850",
+          "Content-Type": "application/json"
+        },
+
+      })
   }
 
 }
