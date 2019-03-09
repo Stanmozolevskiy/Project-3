@@ -1,8 +1,6 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button, Modal, Container, Image} from 'react-bootstrap';
-// import Carousel from 'react-bootstrap/Carousel'
-// import Modal from 'react-bootstrap/Modal';
+import {Button, Container, Image} from 'react-bootstrap';
 import Food from '../foodPage/Contact'
 import API from "../../../utils/API";
 import "../style.css"

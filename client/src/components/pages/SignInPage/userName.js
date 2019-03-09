@@ -11,22 +11,23 @@ class userName extends Component {
   componentDidMount() {
     API.getUser(this.props.match.params.id)
       .then(res => this.setState({ user: res.data }))
-      .catch(err => console.log(err));
-      
+      .catch(err => console.log(err)); 
   }
 
   render() {
     return (
 
         
-              <h1>
+              <h4>
                 
                {this.state.user.firstName}
                <br/>
+               <br/>
                {this.state.user.lastName}
                <br/>
+               <br/>
                {this.state.user.fitnessGoal}
-              </h1>
+              </h4>
            
  
     );
