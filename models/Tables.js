@@ -1,8 +1,9 @@
 //used for the react-bootstrap-tables in the FitnessLog page
+const mongoose = require('mongoose');
 const TablesSchema = new mongoose.Schema({
 
     id: {
-        type: Int
+        type: Number
     },
     date: {
         type: Date
@@ -17,7 +18,7 @@ const TablesSchema = new mongoose.Schema({
         type: String
     },
     caloriesConsumed: {
-        type: Int
+        type: Number
     },
     exercise: {
         type: String

@@ -49,11 +49,7 @@ class EditTypeTable extends React.Component {
   cellEdit(row) {
     console.log(row)
     // make axios call to save to back end
-    axios.post({
-      method:'POST' ,
-      url: '/api/tables',
-      data: row
-    })
+    axios.put('/api/tables', row)
     .then(res => {
       console.log(res);
       console.log(res.data);
