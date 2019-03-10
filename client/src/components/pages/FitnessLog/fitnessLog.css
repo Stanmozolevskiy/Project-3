@@ -1,0 +1,15 @@
+div.modal-content.react-bs-table-insert-modal {
+    overflow: scroll
+}
+
+.modal-content {
+    overflow: scroll
+}
+
+.react-bs-table-insert-modal {
+    overflow: scroll
+}
+
+.ReactModalPortal {
+    overflow: scroll
+}
