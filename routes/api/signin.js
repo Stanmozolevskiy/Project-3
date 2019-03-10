@@ -1,5 +1,6 @@
 const User = require('../../models/User');
 const UserSession = require('../../models/UserSession');
+const TablesSchema = require('../../models/Tables');
 
 
 module.exports = (app) => {
@@ -221,5 +222,14 @@ module.exports = (app) => {
       }
     });
   });
+
+  //Get the data from the react-bootstrap-tables to put into the database
+  app.get('/api/tables', (req, res) => {
+    console.log(res);
+    db.TablesSchema.findOneAndUpdate({
+      //if value already in db, update it
+      // if value not in DB create it
+    })
+  })
 
 };
