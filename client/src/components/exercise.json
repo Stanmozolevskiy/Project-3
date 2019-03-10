@@ -1,0 +1,43 @@
+[
+    {
+      "id": 1,
+      "date": "3/9/19",
+      "exercise": "ran 2 miles",
+      "time": "15 minutes",
+      "intensity": "medium",
+      "caloriesBurned": "355"
+    },
+    {
+      "id": 2,
+      "date": "3/10/19",
+      "exercise": "bench press",
+      "time": "15 minutes",
+      "intensity": "medium",
+      "caloriesBurned": "65"
+    },
+    {
+      "id": 3,
+      "date": "3/11/19",
+      "exercise": "shoulder workout",
+      "time": "45 minutes",
+      "intensity": "low",
+      "caloriesBurned": "215"
+    },
+    {
+      "id": 4,
+      "date": "3/12/19",
+      "exercise": "biceps & triceps",
+      "time": "50 minutes",
+      "intensity": "medium",
+      "caloriesBurned": "325"
+    },
+    {
+      "id": 5,
+      "date": "3/13/19",
+      "exercise": "jog",
+      "time": "65 minutes",
+      "intensity": "low",
+      "caloriesBurned": "465"
+    }
+  ]
+  
