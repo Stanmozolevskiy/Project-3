@@ -3,7 +3,7 @@ import './style.css';
 import { Container, Button, Alert } from "react-bootstrap";
 import {Bar, Line, Pie} from 'react-chartjs-2';
 import exercise from "../exercise.json";
-
+import axios from 'axios';
 class FitnessSummary extends React.Component {
   constructor(props) {
     super(props);
@@ -21,6 +21,10 @@ class FitnessSummary extends React.Component {
 
   getChartData() {
     this.setState({
+      //axios.get('/api/charts)
+      //.then(function (response) {
+          //console.log(response);
+      //})
       //ajax call here
       chartData: {
         labels: ['Monday', 'Tuesday', 'Wednesday','Thursday', 'Friday', 'Saturday', 'Sunday'],
