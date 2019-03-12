@@ -46,6 +46,14 @@ class EditTypeTable extends React.Component {
     afterSaveCell: this.cellEdit
   };
 
+  onAddRow (row) {
+    console.log('row: ', row);
+    axios.post('/api/tables', row)
+    .then(res => {
+      console.log(res);
+      console.log(res.data);
+    })
+  }
   cellEdit(row) {
     console.log(row)
     // make axios call to save to back end
@@ -55,14 +63,20 @@ class EditTypeTable extends React.Component {
       console.log(res.data);
     })
   }
+
   render() {
     console.log(food);
     console.log(exercise);
+    /*look for prepend option*/
+
+    const options = {
+      afterInsertRow: this.onAddRow
+  }
     return (
       <Container>
-      <BootstrapTable  data={ exercise } cellEdit={ this.cellEditProp } insertRow={ true } >
-          <TableHeaderColumn dataField='id' isKey={ true }>ID</TableHeaderColumn>
-          <TableHeaderColumn dataField='date' editable={ {type: 'textarea'} }>Date</TableHeaderColumn>
+      <BootstrapTable  data={ exercise } cellEdit={ this.cellEditProp } options={options} insertRow={ true } > 
+          {/* <TableHeaderColumn dataField='id' isKey={ true }>ID</TableHeaderColumn> */}
+          <TableHeaderColumn dataField='date' isKey={true} editable={ {type: 'textarea'} }>Date</TableHeaderColumn>
           <TableHeaderColumn dataField='exercise' editable={ { type: 'textarea', validator: "" } }>Exercise</TableHeaderColumn>
           <TableHeaderColumn dataField='time' editable={ { type: 'textarea', validator: "" } }>Time</TableHeaderColumn>
           <TableHeaderColumn dataField='intensity' editable={ { type: 'textarea', options: { values: "" } } }>Intensity</TableHeaderColumn>

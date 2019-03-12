@@ -3,10 +3,10 @@ const mongoose = require('mongoose');
 const TablesSchema = new mongoose.Schema({
 
     id: {
-        type: Number
+        type: String
     },
     date: {
-        type: Date
+        type: String
     },
     breakfast: {
         type: String
@@ -18,7 +18,7 @@ const TablesSchema = new mongoose.Schema({
         type: String
     },
     caloriesConsumed: {
-        type: Number
+        type: String
     },
     exercise: {
         type: String
