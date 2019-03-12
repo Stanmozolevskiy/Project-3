@@ -50,6 +50,7 @@ class Login extends React.Component {
 
   }
   async searchExercise(query) {
+    // try to implement weight height gender and age in to make call more accurate
     await API.exer(query)
       .then(res => {
         this.setState({ exercise: res.data.exercises })
@@ -94,7 +95,6 @@ class Login extends React.Component {
               <div key={i}>
                 <div>
                   <ul>
-                    {console.log(each)}
                     <img className="smaller" src={each.photo.thumb} alt="food"></img>
                     <li className="we">{"Food Name: " + each.food_name}</li>
                     <li className="we">{"Brand Name: " + each.brand_name}</li>
