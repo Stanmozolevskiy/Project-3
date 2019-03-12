@@ -21,9 +21,12 @@ class FitnessSummary extends React.Component {
 
   getChartData() {
     this.setState({
-      //axios.get('/api/charts)
-      //.then(function (response) {
-          //console.log(response);
+      //axios.get('/api/tables)
+          // .then(res =>
+          //   this.setState({ chartData: res.data})
+          // )
+          // .catch(err => console.log(err));
+      //};
       //})
       //ajax call here
       chartData: {

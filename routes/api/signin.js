@@ -224,18 +224,19 @@ module.exports = (app) => {
   });
 
   //Get the data from the react-bootstrap-tables to put into the database
-  app.put("/api/tables", function(req, res) {
-    // Create a new Note in the db
+  app.post("/api/tables", function(req, res) {
+    // Create a new exercise in the db
     TablesSchema.create(req.body)
       .then(function(tbData) {
+        console.log(tbData)
         // If a Note was created successfully, find one User (there's only one) and push the new Note's _id to the User's `notes` array
         // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
         // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query
-        return UserSession.findOneAndUpdate({firstName: "Scott"}, { $push: { notes: dbNote._id } }, { new: true });
+        return User.findOneAndUpdate({}, { $push: { tables: tbData._id} }, { new: true });
       })
-      .then(function(dbUser) {
+      .then(function(tbData) {
         // If the User was updated successfully, send it back to the client
-        res.json(dbUser);
+        res.json(tbData);
       })
       .catch(function(err) {
         // If an error occurs, send it back to the client
@@ -261,13 +262,15 @@ module.exports = (app) => {
 
   app.get("/api/tables", function(req, res) {
     // Find all users
-    User.find({firstName: "Scott"})
+    User.find({firstName:"Scott"}) //_id: req.body.id
       // Specify that we want to populate the retrieved users with any associated notes
-      .populate("TablesSchema")
-      .then(function(dbUser) {
+      .populate("tables")
+      .then(function(tbData) {
         // If able to successfully find and associate all Users and Notes, send them back to the client
-        res.json(dbUser);
+        res.json(tbData);
+        console.log(tbData);
       })
+      
       .catch(function(err) {
         // If an error occurs, send it back to the client
         res.json(err);
