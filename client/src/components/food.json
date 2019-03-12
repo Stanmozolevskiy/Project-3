@@ -1,0 +1,43 @@
+[
+    {
+      "id": 1,
+      "date": "3/9/19",
+      "breakfast": "Western Omlette",
+      "lunch": "Chicken Salad",
+      "dinner": "Tacos",
+      "caloriesConsumed": "4136"
+    },
+    {
+      "id": 2,
+      "date": "3/10/19",
+      "breakfast": "Oatmeal",
+      "lunch": "Salmon and Rice",
+      "dinner": "Cheese Burger and Fries",
+      "caloriesConsumed": "4750"
+    },
+    {
+      "id": 3,
+      "date": "3/11/19",
+      "breakfast": "French Toast",
+      "lunch": "Pasta with meat sauce",
+      "dinner": "Baby Back Ribs",
+      "caloriesConsumed": "4988"
+    },
+    {
+      "id": 4,
+      "date": "3/12/19",
+      "breakfast": "Yogurt",
+      "lunch": "Pepperoni Pizza",
+      "dinner": "General Tsos Chicken",
+      "caloriesConsumed": "3790"
+    },
+    {
+      "id": 5,
+      "date": "3/13/19",
+      "breakfast": "Bacon and Eggs",
+      "lunch": "Grilled Cheese",
+      "dinner": "Steak and mashed patatoes",
+      "caloriesConsumed": "4250"
+    }
+  ]
+  

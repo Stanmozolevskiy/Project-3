@@ -1,5 +1,6 @@
 const User = require('../../models/User');
 const UserSession = require('../../models/UserSession');
+const TablesSchema = require('../../models/Tables');
 
 
 module.exports = (app) => {
@@ -221,5 +222,22 @@ module.exports = (app) => {
       }
     });
   });
+
+  //Get the data from the react-bootstrap-tables to put into the database
+  app.put('/api/tables', (req, res) => {
+    console.log(req.body);
+    UserSession.findOneAndUpdate(req.body,
+      { $put: { tables: req.body.id } }, { new: true }
+      //if value already in db, update it
+      // if value not in DB create it
+    )
+  })
+
+  //get charts by user login ID
+  app.get('/api/charts/:chartId', (req, res) => {
+    TablesSchema.findById(id, function (err, result) {
+      send.json({res});
+    })
+  })
 
 };

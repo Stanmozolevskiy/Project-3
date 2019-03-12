@@ -6,7 +6,7 @@ import API from "../../../utils/API";
 import "../style.css"
 import banner from './image/FitnessFirst.png';
 
-class Login extends React.Component {
+class Home extends React.Component {
   constructor(props, context) {
     super(props, context);
 
@@ -124,4 +124,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default Home;

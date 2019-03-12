@@ -1,20 +1,17 @@
 import React from "react";
 import {Table, Image, Container, Row, Col } from 'react-bootstrap'
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
-import jobs from "../job.json"
-console.log(jobs);
+import exercise from "../exercise";
+import food from "../food";
+import fitnessLogcss from "./FitnessLog/fitnessLog.css";
+import axios from 'axios';
+
+console.log(exercise);
 // or in ECMAScript 5
 // import ReactBSTable from 'react-bootstrap-table';  
 // var BootstrapTable = ReactBSTable.BootstrapTable;
 // var TableHeaderColumn = ReactBSTable.TableHeaderColumn;
 //test
-
-const jobTypes = [ 'A', 'B', 'C', 'D' ];
-
-const cellEditProp = {
-  mode: 'click',
-  blurToSave: true
-};
 
 // validator function pass the user input value and row object. In addition, a bool return value is expected
 function jobNameValidator(value, row) {
@@ -24,10 +21,10 @@ function jobNameValidator(value, row) {
     response.notification.type = 'error';
     response.notification.msg = 'Value must be inserted';
     response.notification.title = 'Requested Value';
-  } else if (value.length < 10) {
+  } else if (value.length < 1) {
     response.isValid = false;
     response.notification.type = 'error';
-    response.notification.msg = 'Value must have 10+ characters';
+    response.notification.msg = 'Value must have 1 characters';
     response.notification.title = 'Invalid Value';
   }
   return response;
@@ -42,19 +39,44 @@ function jobStatusValidator(value, row) {
 }
 
 class EditTypeTable extends React.Component {
+
+  cellEditProp = {
+    mode: 'click',
+    blurToSave: true,
+    afterSaveCell: this.cellEdit
+  };
+
+  cellEdit(row) {
+    console.log(row)
+    // make axios call to save to back end
+    axios.put('/api/tables', row)
+    .then(res => {
+      console.log(res);
+      console.log(res.data);
+    })
+  }
   render() {
-    const jsondata = jobs;
-    // const jsondata = JSON.parse(jobs);
-    console.log(jsondata);
-    console.log(jobs);
+    console.log(food);
+    console.log(exercise);
     return (
-      <BootstrapTable data={ jobs } cellEdit={ cellEditProp } insertRow={ true }>
-          <TableHeaderColumn dataField='id' isKey={ true }>Job ID</TableHeaderColumn>
-          <TableHeaderColumn dataField='status' editable={ { validator: jobStatusValidator } }>Job Status</TableHeaderColumn>
-          <TableHeaderColumn dataField='name' editable={ { type: 'textarea', validator: jobNameValidator } }>Job Name</TableHeaderColumn>
-          <TableHeaderColumn dataField='type' editable={ { type: 'select', options: { values: jobTypes } } }>Job Type</TableHeaderColumn>
-          <TableHeaderColumn dataField='active' editable={ { type: 'checkbox', options: { values: 'Y:N' } } }>Active</TableHeaderColumn>
-      </BootstrapTable>
+      <Container>
+      <BootstrapTable  data={ exercise } cellEdit={ this.cellEditProp } insertRow={ true } >
+          <TableHeaderColumn dataField='id' isKey={ true }>ID</TableHeaderColumn>
+          <TableHeaderColumn dataField='date' editable={ {type: 'textarea'} }>Date</TableHeaderColumn>
+          <TableHeaderColumn dataField='exercise' editable={ { type: 'textarea', validator: "" } }>Exercise</TableHeaderColumn>
+          <TableHeaderColumn dataField='time' editable={ { type: 'textarea', validator: "" } }>Time</TableHeaderColumn>
+          <TableHeaderColumn dataField='intensity' editable={ { type: 'textarea', options: { values: "" } } }>Intensity</TableHeaderColumn>
+          <TableHeaderColumn dataField='caloriesBurned' editable={ { type: 'textarea', options: { values: 'Y:N' } } }>Calories Burned</TableHeaderColumn>
+      </BootstrapTable> <br /> <br />
+      <BootstrapTable data={ food } cellEdit={ this.cellEditProp } insertRow={ true }>
+      <TableHeaderColumn dataField='id' isKey={ true }>ID</TableHeaderColumn>
+      <TableHeaderColumn dataField='date' editable={ {type: 'textarea'} }>Date</TableHeaderColumn>
+      <TableHeaderColumn dataField='breakfast' editable={ { type: 'textarea', validator: "" } }>Breakfast</TableHeaderColumn>
+      <TableHeaderColumn dataField='lunch' editable={ { type: 'textarea', validator: "" } }>Lunch</TableHeaderColumn>
+      <TableHeaderColumn dataField='dinner' editable={ { type: 'textarea' } }>Dinner</TableHeaderColumn>
+      <TableHeaderColumn dataField='caloriesConsumed' editable={ { type: 'textarea'} }>Calories Consumed</TableHeaderColumn>
+  </BootstrapTable>
+  </Container>
     );
   }
 }

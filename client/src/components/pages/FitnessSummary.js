@@ -1,22 +1,54 @@
 import React from "react";
 import './style.css';
 import { Container, Button, Alert } from "react-bootstrap";
-
-function getRanValue () {
-  const getFitnessPunishment = ["Donate $20 to your favorite charity", "Take a cold shower for 3 days in a row", ""];
-  var rand = getFitnessPunishment[Math.floor(Math.random() * getFitnessPunishment.length)];
-  this.setState({rewardButton: rand});
-  console.log(rand);
-}
-
+import {Bar, Line, Pie} from 'react-chartjs-2';
+import exercise from "../exercise.json";
+import axios from 'axios';
 class FitnessSummary extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      chartData: {},
       rewardButton: "",
       motivateButton: ""
     }
     // this.getValue = this.getValue.bind(this);
+  }
+
+  componentWillMount() {
+    this.getChartData();
+  }
+
+  getChartData() {
+    this.setState({
+      //axios.get('/api/charts)
+      //.then(function (response) {
+          //console.log(response);
+      //})
+      //ajax call here
+      chartData: {
+        labels: ['Monday', 'Tuesday', 'Wednesday','Thursday', 'Friday', 'Saturday', 'Sunday'],
+        datasets: [
+          {
+            label: 'Calories Burned',
+            data: [
+              355, 65, 215, 325, 465, 550, 175
+            ],
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.6)',
+              'rgba(54, 162, 235, 0.6)',
+              'rgba(255, 206, 86, 0.6)',
+              'rgba(75, 192, 192, 0.6)',
+              'rgba(153, 102, 255, 0.6)',
+              'rgba(255, 159, 64, 0.6)',
+              'rgba(255, 99, 132, 0.6)'
+            ]
+
+          }
+        ]
+
+      }
+    })
   }
 
   getMotivateValue =  () => {
@@ -40,6 +72,38 @@ render() {
     <div>
       <Container>
         <br />
+        <div className="chart">
+          <Bar
+            data={this.state.chartData}
+            options={{
+              title: {
+                display: true,
+                text: "Daily Workout Calories Burned",
+                fontSize: 25
+              },
+              legend: {
+                display: true,
+                position: 'right'
+              }
+            }}
+          /> <br /> <br />
+          <Line
+            data={this.state.chartData}
+            options={{
+              title: {
+                display: true,
+                text: "Daily Calories Consumed",
+                fontSize: 25,
+                label: 'Calories Consumed'
+              },
+              legend: {
+                display: true,
+                position: 'right'
+              }
+            }}
+          />
+
+        </div>
       <Alert dismissible variant="success">
   <Alert.Heading>Fitness Goal Met?</Alert.Heading>
   <p>
