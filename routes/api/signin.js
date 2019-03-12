@@ -224,20 +224,57 @@ module.exports = (app) => {
   });
 
   //Get the data from the react-bootstrap-tables to put into the database
-  app.put('/api/tables', (req, res) => {
-    console.log(req.body);
-    UserSession.findOneAndUpdate(req.body,
-      { $put: { tables: req.body.id } }, { new: true }
-      //if value already in db, update it
-      // if value not in DB create it
-    )
-  })
+  app.post("/api/tables", function(req, res) {
+    // Create a new exercise in the db
+    TablesSchema.create(req.body)
+      .then(function(tbData) {
+        console.log(tbData)
+        // If a Note was created successfully, find one User (there's only one) and push the new Note's _id to the User's `notes` array
+        // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
+        // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query
+        return User.findOneAndUpdate({}, { $push: { tables: tbData._id} }, { new: true });
+      })
+      .then(function(tbData) {
+        // If the User was updated successfully, send it back to the client
+        res.json(tbData);
+      })
+      .catch(function(err) {
+        // If an error occurs, send it back to the client
+        res.json(err);
+      });
+  });
+
+  // app.put('/api/tables', (req, res) => {
+  //   console.log(req.body);
+  //   UserSession.findOneAndUpdate(req.body,
+  //     { $push: { tables: req.body.id } }, { new: true }
+  //     //if value already in db, update it
+  //     // if value not in DB create it
+  //   )
+  // })
 
   //get charts by user login ID
-  app.get('/api/charts/:chartId', (req, res) => {
-    TablesSchema.findById(id, function (err, result) {
-      send.json({res});
-    })
-  })
+  // app.get('/api/charts/:chartId', (req, res) => {
+  //   TablesSchema.findById(id, function (err, result) {
+  //     send.json({res});
+  //   })
+  // })
+
+  app.get("/api/tables", function(req, res) {
+    // Find all users
+    User.find({firstName:"Scott"}) //_id: req.body.id
+      // Specify that we want to populate the retrieved users with any associated notes
+      .populate("tables")
+      .then(function(tbData) {
+        // If able to successfully find and associate all Users and Notes, send them back to the client
+        res.json(tbData);
+        console.log(tbData);
+      })
+      
+      .catch(function(err) {
+        // If an error occurs, send it back to the client
+        res.json(err);
+      });
+  });
 
 };

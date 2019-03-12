@@ -1,5 +1,6 @@
 div.modal-content.react-bs-table-insert-modal {
-    overflow: scroll
+    overflow: scroll;
+    height: 500px;
 }
 
 .modal-content {
