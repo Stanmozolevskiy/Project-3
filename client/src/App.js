@@ -9,7 +9,6 @@ import './appstyle.css';
 import Contact from "./components/pages/foodPage/Contact"
 import noMatch from "./components/pages/noMatch";
 import SignIn from "./components/pages/SignInPage/SignIn"
-import userName from "./components/pages/SignInPage/userName"
 
 
 function App() {
@@ -24,7 +23,6 @@ function App() {
         <Route exact path="/FitnessLog" component={FitnessLog} />
         <Route exact path="/contact" component={Contact} />
         <Route exact path="/SignIn" component={SignIn} />
-        <Route exact path="/user/:id" component={userName} />
         <Route component={noMatch} />
         </Switch>
       </div>
