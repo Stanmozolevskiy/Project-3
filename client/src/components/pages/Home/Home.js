@@ -11,10 +11,6 @@ class Home extends React.Component {
   constructor(props, context) {
     super(props, context);
 
-    //  Modals handlers
-    this.handleShow = this.handleShow.bind(this);
-    this.handleClose = this.handleClose.bind(this);
-    // 
     this.state = {
       show: false,
       query: "",
@@ -25,15 +21,6 @@ class Home extends React.Component {
       restaurantList: []
     };
   }
-  //  Modals generator
-  handleClose() {
-    this.setState({ show: false });
-  }
-
-  handleShow() {
-    this.setState({ show: true });
-  }
-  // 
   handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
     const { name, value } = event.target;
@@ -90,7 +77,7 @@ class Home extends React.Component {
     return (
       <div>
         <Container>
-          <h2>Welcome to Fitness First. Your one stop, Fitness Workshop </h2>
+          <h2 className="white">Welcome to Fitness First. Your one stop, Fitness Workshop </h2>
           <Image src={banner} />
           <Food>
             <form>
@@ -120,19 +107,18 @@ class Home extends React.Component {
                 <Button id="searchbutton" onClick={this.handleFoodSubmit}>Search</Button>
               </div>
             </form>
+            <div className="cards-container">
             {this.state.photo.map((each, i) => (
               <div key={i}>
-                <div>
-                  <ul>
+                <div className="cards">
                     <img className="smaller" src={each.photo.thumb} alt="food"></img>
                     <li className="we">{"Food Name: " + each.food_name}</li>
                     <li className="we">{"Brand Name: " + each.brand_name}</li>
                     <li className="we">{"Calories: " + each.nf_calories}</li>
-                    <a class="btn btn-primary card-detail" data-val={i} onClick={this.handleShow}>Details </a>
-                  </ul>
                 </div>
               </div>
             ))}
+            </div>
                   </Food>
         </Container>
       </div>
