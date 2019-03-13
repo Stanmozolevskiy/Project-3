@@ -11,10 +11,6 @@ class Home extends React.Component {
   constructor(props, context) {
     super(props, context);
 
-    //  Modals handlers
-    this.handleShow = this.handleShow.bind(this);
-    this.handleClose = this.handleClose.bind(this);
-    // 
     this.state = {
       show: false,
       query: "",
