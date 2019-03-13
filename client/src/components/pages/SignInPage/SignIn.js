@@ -180,13 +180,13 @@ class SignIn extends React.Component {
                         {(signInError) ? (<p>{signInError}</p>) : (null)}
                         <h2>Sign In</h2>
                         <Form.Group controlId="formFirstName">
-                            <Form.Label>Enail</Form.Label>
+                            <Form.Label>Email</Form.Label>
                             <Form.Control type="email" value={signInEmail} onChange={this.onTextboxChangeSignInEmail} placeholder="Email" />
                             <Form.Text className="text-muted">
                             </Form.Text>
                         </Form.Group>
                         <Form.Group controlId="formLasttName">
-                            <Form.Label>password</Form.Label>
+                            <Form.Label>Password</Form.Label>
                             <Form.Control type="text" value={signInPassword} onChange={this.onTextboxChangeSignInPassword} placeholder="password" />
                             <Form.Text className="text-muted">
                             </Form.Text>
