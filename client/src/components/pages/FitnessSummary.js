@@ -21,38 +21,40 @@ class FitnessSummary extends React.Component {
 
   getChartData() {
     this.setState({
-      //axios.get('/api/tables)
-          // .then(res =>
-          //   this.setState({ chartData: res.data})
-          // )
-          // .catch(err => console.log(err));
-      //};
-      //})
+      chartData: axios.get('/api/data')
+          .then(res =>
+            this.setState({ chartData: res.data}, console.log(res.data)), 
+            
+          )
+          .catch(err => console.log(err))
+      })
+      
+    }
       //ajax call here
-      chartData: {
-        labels: ['Monday', 'Tuesday', 'Wednesday','Thursday', 'Friday', 'Saturday', 'Sunday'],
-        datasets: [
-          {
-            label: 'Calories Burned',
-            data: [
-              355, 65, 215, 325, 465, 550, 175
-            ],
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.6)',
-              'rgba(54, 162, 235, 0.6)',
-              'rgba(255, 206, 86, 0.6)',
-              'rgba(75, 192, 192, 0.6)',
-              'rgba(153, 102, 255, 0.6)',
-              'rgba(255, 159, 64, 0.6)',
-              'rgba(255, 99, 132, 0.6)'
-            ]
+  //     chartData: {
+  //       labels: ['Monday', 'Tuesday', 'Wednesday','Thursday', 'Friday', 'Saturday', 'Sunday'],
+  //       datasets: [
+  //         {
+  //           label: 'Calories Burned',
+  //           data: [
+  //             355, 65, 215, 325, 465, 550, 175
+  //           ],
+  //           backgroundColor: [
+  //             'rgba(255, 99, 132, 0.6)',
+  //             'rgba(54, 162, 235, 0.6)',
+  //             'rgba(255, 206, 86, 0.6)',
+  //             'rgba(75, 192, 192, 0.6)',
+  //             'rgba(153, 102, 255, 0.6)',
+  //             'rgba(255, 159, 64, 0.6)',
+  //             'rgba(255, 99, 132, 0.6)'
+  //           ]
 
-          }
-        ]
+  //         }
+  //       ]
 
-      }
-    })
-  }
+  //     }
+  //   })
+  // }
 
   getMotivateValue =  () => {
     const getFitnessPunishment = ["Donate $20 to your favorite charity", "Take a cold shower for 3 days in a row", "Do as many push ups as you can", "Eat only chicken and vegetables for the next week", "Run backwards on the treadmill for 10 minutes"];
