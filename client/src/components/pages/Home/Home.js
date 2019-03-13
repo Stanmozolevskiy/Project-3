@@ -50,7 +50,6 @@ class Home extends React.Component {
 
   }
   async searchExercise(query) {
-    // try to implement weight height gender and age in to make call more accurate
     await API.exer(query)
       .then(res => {
         this.setState({ exercise: res.data.exercises })
@@ -91,32 +90,16 @@ class Home extends React.Component {
                 <Button id="searchbutton" onClick={this.handleFoodSubmit}>Search</Button>
               </div>
             </form>
-            {this.state.photo.map((each, i) => (
-              <div key={i}>
-                <div>
-                  <ul>
-                    <img className="smaller" src={each.photo.thumb} alt="food"></img>
-                    <li className="we">{"Food Name: " + each.food_name}</li>
-                    <li className="we">{"Brand Name: " + each.brand_name}</li>
-                    <li className="we">{"Calories: " + each.nf_calories}</li>
-                  </ul>
+            <div className="cards-container">
+              {this.state.photo.map((each, i) => (
+                <div key={i} className="cards">
+                  <img className="smaller" src={each.photo.thumb} alt="food"></img>
+                  <li className="we">{"Food Name: " + each.food_name }</li>
+                  <li className="we">{"Brand Name: " + each.brand_name}</li>
+                  <li className="we">{"Calories: " + each.nf_calories}</li>
                 </div>
-              </div>
-            ))}
-            {/* {this.state.results.map((each, i) => (
-              <Card id="fooddata">
-                <div className="foodContainer">
-                  <div className="eachName">
-                    <ul>
-                      <li className="we" key={i} >{"Food: " + each.fields.item_name}</li>
-                      <li className="we" key={i} >{"Brand: " + each.fields.brand_name}</li>
-                      <li className="we" key={i} >{"Calories: " + each.fields.nf_calories}</li>
-                      <li className="we" key={i} >{"Serving Size: " + each.fields.nf_serving_size_qty}</li>
-                    </ul>
-                  </div>
-                </div>
-              </Card>
-            ))} */}
+              ))}
+            </div>
           </Food>
         </Container>
       </div>

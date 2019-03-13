@@ -22,15 +22,10 @@ export default {
       }
     })
   },
-
-  exer: function (query, gender, weight, height, age) {
+ 
+  exer: function (query) {
     return axios.post("https://trackapi.nutritionix.com/v2/natural/exercise", {
-      "query": query,
-      "gender": gender,
-      "weight_lb": weight,
-      "height_ft": height,
-      "age": age
-
+      "query": query
     }, {
         headers: {
           "x-app-id": "4fd1d55d",
