@@ -115,7 +115,7 @@ render() {
   <p className="mb-0">
 
   
-  <Button onClick={this.getRewardValue} variant="primary">Reward</Button> 
+  <Button className="btn-outline-secondary" onClick={this.getRewardValue} id="genericbutton">Reward</Button> 
   <br />
   <h4> {this.state.rewardButton} </h4>
 
@@ -126,7 +126,7 @@ render() {
   <p>
     Press the button below to find out what's next...
   </p>
-  <Button onClick={this.getMotivateValue} variant="primary">Motivation</Button>
+  <Button className="btn-outline-secondary" onClick={this.getMotivateValue} id="genericbutton">Motivation</Button>
   <br />
   <h4>{this.state.motivateButton} </h4>
     </Alert>
