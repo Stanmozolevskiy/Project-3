@@ -244,21 +244,19 @@ module.exports = (app) => {
       });
   });
 
-  // app.put('/api/tables', (req, res) => {
-  //   console.log(req.body);
-  //   UserSession.findOneAndUpdate(req.body,
-  //     { $push: { tables: req.body.id } }, { new: true }
-  //     //if value already in db, update it
-  //     // if value not in DB create it
-  //   )
-  // })
+  app.get("/api/find/user", function(req, res) {
+    // Find the user that is signed in
+    TablesSchema.find({firstName: "Scott"}) //change to req.body.id for prod
+      .then(function(dbNote) {
+        // If user found, send them back to the client
+        res.json(dbNote);
+      })
+      .catch(function(err) {
+        // If an error occurs, send the error back to the client
+        res.json(err);
+      });
+  });
 
-  //get charts by user login ID
-  // app.get('/api/charts/:chartId', (req, res) => {
-  //   TablesSchema.findById(id, function (err, result) {
-  //     send.json({res});
-  //   })
-  // })
 
   app.get("/api/tables", function(req, res) {
     // Find all users
