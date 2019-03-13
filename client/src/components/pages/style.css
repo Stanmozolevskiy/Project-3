@@ -107,3 +107,17 @@
 #signinform {
   margin: 20px;
 }
+.cards{
+  box-shadow: 0 3px 6px #999, 0 3px 6px #999;
+  padding: 15px;
+  border-style: outset;
+
+}
+.cards-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
+  background: #fff;
+  margin: 1rem;
+
+}

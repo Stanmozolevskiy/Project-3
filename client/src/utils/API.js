@@ -23,10 +23,10 @@ export default {
       }
     })
   },
-
+ 
   exer: function (query) {
     return axios.post("https://trackapi.nutritionix.com/v2/natural/exercise", {
-      query
+      "query": query
     }, {
         headers: {
           "x-app-id": "4fd1d55d",

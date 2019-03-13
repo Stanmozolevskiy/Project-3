@@ -106,7 +106,7 @@ class User extends React.Component {
             isLoading: true,
         });
 
-
+ 
         // Post request to backend
         fetch('/api/account/signup', {
             method: 'POST',

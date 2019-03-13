@@ -120,7 +120,6 @@ class Home extends React.Component {
                 <Button id="searchbutton" onClick={this.handleFoodSubmit}>Search</Button>
               </div>
             </form>
-            {this.state.test2}
             {this.state.photo.map((each, i) => (
               <div key={i}>
                 <div>
@@ -134,43 +133,7 @@ class Home extends React.Component {
                 </div>
               </div>
             ))}
-            {/* {this.state.results.map((each, i) => (
-              <Card id="fooddata">
-                <div className="foodContainer">
-                  <div className="eachName">
-                    <ul>
-                      <li className="we" key={i} >{"Food: " + each.fields.item_name}</li>
-                      <li className="we" key={i} >{"Brand: " + each.fields.brand_name}</li>
-                      <li className="we" key={i} >{"Calories: " + each.fields.nf_calories}</li>
-                      <li className="we" key={i} >{"Serving Size: " + each.fields.nf_serving_size_qty}</li>
-                    </ul>
-                  </div>
-                </div>
-              </Card>
-            ))} */}
-            {/* <Button variant="primary" onClick={this.handleShow}>
-              Launch demo modal
-        </Button> */}
-
-            {/*Modal for Details */}
-            {/* <Modal show={this.state.show} onHide={this.handleClose} centered>
-              <Modal.Header closeButton>
-                <Modal.Title>{"Food Name: " + this.food_name}</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-              </Modal.Body>
-              <Modal.Footer>
-                <Button variant="secondary" onClick={this.handleClose}>
-                  Close
-                        </Button>
-                <Button variant="primary" onClick={this.handleClose}>
-                  Save Changes
-                       </Button>
-              </Modal.Footer>
-            </Modal> */}
-            {/*Modal for Details */}
-
-          </Food>
+                  </Food>
         </Container>
       </div>
     );

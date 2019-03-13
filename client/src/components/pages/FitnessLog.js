@@ -39,21 +39,23 @@ function jobStatusValidator(value, row) {
 }
 
 class EditTypeTable extends React.Component {
-
+  //set the properties of the cells to save after the user hits the save button
   cellEditProp = {
     mode: 'click',
     blurToSave: true,
     afterSaveCell: this.cellEdit
   };
 
+  //when a new row is added, send it to the backend route /api/tables
   onAddRow (row) {
-    console.log('row: ', row);
+    // console.log('row: ', row);
     axios.post('/api/tables', row)
     .then(res => {
       console.log(res);
       console.log(res.data);
     })
   }
+  // when a cell is edited, send the new row to the backend route /api/tables
   cellEdit(row) {
     console.log(row)
     // make axios call to save to back end
@@ -65,8 +67,8 @@ class EditTypeTable extends React.Component {
   }
 
   render() {
-    console.log(food);
-    console.log(exercise);
+    // console.log(food);
+    // console.log(exercise);
     /*look for prepend option*/
 
     const options = {
@@ -82,9 +84,9 @@ class EditTypeTable extends React.Component {
           <TableHeaderColumn dataField='intensity' editable={ { type: 'textarea', options: { values: "" } } }>Intensity</TableHeaderColumn>
           <TableHeaderColumn dataField='caloriesBurned' editable={ { type: 'textarea', options: { values: 'Y:N' } } }>Calories Burned</TableHeaderColumn>
       </BootstrapTable> <br /> <br />
-      <BootstrapTable data={ food } cellEdit={ this.cellEditProp } insertRow={ true }>
-      <TableHeaderColumn dataField='id' isKey={ true }>ID</TableHeaderColumn>
-      <TableHeaderColumn dataField='date' editable={ {type: 'textarea'} }>Date</TableHeaderColumn>
+      <BootstrapTable data={ food } cellEdit={ this.cellEditProp } options={options} insertRow={ true }>
+      {/* <TableHeaderColumn dataField='id' isKey={ true }>ID</TableHeaderColumn> */}
+      <TableHeaderColumn dataField='date' isKey={true} editable={ {type: 'textarea'} }>Date</TableHeaderColumn>
       <TableHeaderColumn dataField='breakfast' editable={ { type: 'textarea', validator: "" } }>Breakfast</TableHeaderColumn>
       <TableHeaderColumn dataField='lunch' editable={ { type: 'textarea', validator: "" } }>Lunch</TableHeaderColumn>
       <TableHeaderColumn dataField='dinner' editable={ { type: 'textarea' } }>Dinner</TableHeaderColumn>

@@ -14,19 +14,17 @@ render() {
     <Navbar expand="lg" id="navbar">
     <Navbar fixed="top" />
     <div class="col-md-2 text-center"> <Link to=""><Image src={homeimage} /></Link> </div>
-      <div class="col-md-2">
-      <Link to="FitnessLog"><Button size="large" className="btn-outline-secondary col-md-10" id="navbutton">Fitness Log</Button></Link>
+      <div class="col-md-3">
+      <Link to="FitnessLog"><Button size="large" className="btn-outline-secondary col-md-12" id="navbutton">Fitness Log</Button></Link>
+      </div>
+      <div class="col-md-3">
+      <Link to="FitnessSummary" ><Button size="large" className="btn-outline-secondary col-md-12" id="navbutton">Fitness Summary</Button></Link>
       </div>
       <div class="col-md-2">
-      <Link to="FitnessSummary" ><Button size="large" className="btn-outline-secondary col-md-10" id="navbutton">Fitness Summary</Button></Link>
-      </div>
-      <div class="col-md-2">
-      </div>
-      <div class="col-md-2">
+      <Link to="/myProfile"> <Button size="large" className="btn-outline-secondary col-md-12"  id="navbutton">Profile</Button> </Link>
       </div>
     <div class="col-md-2">
-      <Link to="/myProfile"> <Button size="large" className="btn-outline-secondary col-md-5"  id="navbutton">Profile</Button> </Link>
-      <Link to="/SignIn"><Button size="large" className="btn-outline-secondary col-md-5" id="navbutton">SignIn</Button></Link>
+      <Link to="/SignIn"><Button size="large" className="btn-outline-secondary col-md-12" id="navbutton">SignIn</Button></Link>
       </div>
     </Navbar>
   );
