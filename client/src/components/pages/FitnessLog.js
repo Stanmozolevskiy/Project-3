@@ -46,12 +46,20 @@ class EditTypeTable extends React.Component {
     afterSaveCell: this.cellEdit
   };
 
+  state = {
+    exercise: exercise,
+    food: food 
+  }
+
+
+
   //when a new row is added, send it to the backend route /api/tables
   onAddRow (row) {
     // console.log('row: ', row);
     axios.post('/api/tables', row)
     .then(res => {
-      console.log(res);
+      console.log(this);
+      this.setState({exercise: res});
       console.log(res.data);
     })
   }
@@ -59,7 +67,7 @@ class EditTypeTable extends React.Component {
   cellEdit(row) {
     console.log(row)
     // make axios call to save to back end
-    axios.put('/api/tables', row)
+    axios.put('/api/update', row)
     .then(res => {
       console.log(res);
       console.log(res.data);
@@ -76,16 +84,16 @@ class EditTypeTable extends React.Component {
   }
     return (
       <Container>
-      <BootstrapTable  data={ exercise } cellEdit={ this.cellEditProp } options={options} insertRow={ true } > 
-          {/* <TableHeaderColumn dataField='id' isKey={ true }>ID</TableHeaderColumn> */}
+      <BootstrapTable  data={this.state.exercise} cellEdit={ this.cellEditProp } options={options} insertRow={ true } > 
+          <TableHeaderColumn dataField='id' hidden>ID</TableHeaderColumn>
           <TableHeaderColumn dataField='date' isKey={true} editable={ {type: 'textarea'} }>Date</TableHeaderColumn>
           <TableHeaderColumn dataField='exercise' editable={ { type: 'textarea', validator: "" } }>Exercise</TableHeaderColumn>
           <TableHeaderColumn dataField='time' editable={ { type: 'textarea', validator: "" } }>Time</TableHeaderColumn>
           <TableHeaderColumn dataField='intensity' editable={ { type: 'textarea', options: { values: "" } } }>Intensity</TableHeaderColumn>
           <TableHeaderColumn dataField='caloriesBurned' editable={ { type: 'textarea', options: { values: 'Y:N' } } }>Calories Burned</TableHeaderColumn>
       </BootstrapTable> <br /> <br />
-      <BootstrapTable data={ food } cellEdit={ this.cellEditProp } options={options} insertRow={ true }>
-      {/* <TableHeaderColumn dataField='id' isKey={ true }>ID</TableHeaderColumn> */}
+      <BootstrapTable data={this.state.food} cellEdit={ this.cellEditProp } options={options} insertRow={ true }>
+      <TableHeaderColumn dataField='id' hidden>ID</TableHeaderColumn>
       <TableHeaderColumn dataField='date' isKey={true} editable={ {type: 'textarea'} }>Date</TableHeaderColumn>
       <TableHeaderColumn dataField='breakfast' editable={ { type: 'textarea', validator: "" } }>Breakfast</TableHeaderColumn>
       <TableHeaderColumn dataField='lunch' editable={ { type: 'textarea', validator: "" } }>Lunch</TableHeaderColumn>
