@@ -2,6 +2,8 @@ import React from 'react';
 import 'whatwg-fetch';
 import { Form } from "react-bootstrap";
 import { getFromStorage, } from '../../utils/storage';
+import API from "../../utils/API";
+import {Redirect} from 'react-router-dom'
 
 
 class User extends React.Component {
@@ -17,15 +19,16 @@ class User extends React.Component {
             signUpFirstName: '',
             signUpLastName: '',
             signUpAge: '',
+            signupSucsess: false,
             signUpFitnessGoal: '',
-            
+
         }
         this.onTextboxChangeSignUpEmail = this.onTextboxChangeSignUpEmail.bind(this);
         this.onTextboxChangeSignUpPassword = this.onTextboxChangeSignUpPassword.bind(this);
-        this.onTextboxChangeFirstName =  this.onTextboxChangeFirstName.bind(this);
-        this.onTextboxChangeLastName =  this.onTextboxChangeLastName.bind(this);
-        this.onTextboxChangeAge =  this.onTextboxChangeAge.bind(this);
-        this.onTextboxChangeFitnessGoal =  this.onTextboxChangeFitnessGoal.bind(this);
+        this.onTextboxChangeFirstName = this.onTextboxChangeFirstName.bind(this);
+        this.onTextboxChangeLastName = this.onTextboxChangeLastName.bind(this);
+        this.onTextboxChangeAge = this.onTextboxChangeAge.bind(this);
+        this.onTextboxChangeFitnessGoal = this.onTextboxChangeFitnessGoal.bind(this);
 
         this.onSignUp = this.onSignUp.bind(this);
         this.logout = this.logout.bind(this);
@@ -56,7 +59,7 @@ class User extends React.Component {
         }
     }
 
-    
+
 
     onTextboxChangeSignUpEmail(event) {
         this.setState({
@@ -132,6 +135,15 @@ class User extends React.Component {
                         signUpAge: '',
                         signUpFitnessGoal: '',
                     });
+
+                    API.signIn(signUpPassword, signUpPassword)
+                        .then(json => {
+                            console.log(json)
+                            this.setState({
+                                signupSucsess: true
+                            })
+                        })
+
                 } else {
                     this.setState({
                         signUpError: json.message,
@@ -180,19 +192,22 @@ class User extends React.Component {
             signUpFirstName,
             signUpLastName,
             signUpAge,
-            signUpFitnessGoal
+            signUpFitnessGoal,
+            signupSucsess
         } = this.state;
+        if(signupSucsess){
+        return < Redirect to ="/SignIn"/> } 
         if (isLoading) {
             return (<div><p>Loading...</p></div>);
         }
 
         if (!token) {
 
-           
+
             return (
                 <div id="profileform">
                     <Form>
-                       
+
                         {(signUpError) ? (<p>{signUpError}</p>) : (null)}
                         <h2>Sign Up</h2>
                         <Form.Group controlId="firstName">
@@ -241,11 +256,11 @@ class User extends React.Component {
 
         return (
             <div>
-              <p>Account </p>
-              <button onClick={this.logout}>Logout</button>
+                <p>Account </p>
+                <button onClick={this.logout}>Logout</button>
             </div>
-          );
-        }
-      }
+        );
+    }
+}
 
-    export default User;
+export default User;

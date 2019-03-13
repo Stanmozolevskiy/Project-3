@@ -1,4 +1,5 @@
 import axios from "axios"
+import { getFromStorage, setInStorage, } from '../utils/storage';
 export default {
   search: (query) => {
     const id = "4fd1d55d";
@@ -34,6 +35,35 @@ export default {
         },
 
       })
-  }
+  },
 
+  signIn: function (email, password) {
+    return new Promise((resolve, reject) => {
+
+      fetch('/api/account/signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      }).then(res => res.json())
+        .then(json => {
+          if (json.success) {
+            // !! call for the user's profile data
+            this.getUser(json.userId)
+              .then(res => resolve({user:res.data,token: json.token}))
+              .catch(err => console.log(err));
+            //!!
+            setInStorage('the_main_app', { token: json.token });
+            
+          } else {
+            reject("login failed")
+          }
+        });
+    })
+  }
 }
+
