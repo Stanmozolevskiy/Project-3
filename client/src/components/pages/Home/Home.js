@@ -34,20 +34,6 @@ class Home extends React.Component {
     await API.search(query)
       .then(response => {
         this.setState({ results: response.data.hits })
-        this.setState({ test: response.data.hits })
-
-        for (let i = 0; i < this.state.test.length; i++) {
-          let card = <div className="card-body text-center">
-            <h5 className="card-title">{this.state.test[i].fields.food_name}</h5>
-            <div className="card-details">
-              <h6 className="card-subtitle mb-2 text-muted">Rating: {this.state.test[i].fields.food_name}</h6>
-              <p className="card-text">{}</p>
-              <a className="btn btn-primary card-detail" data-val={i}>Details</a>
-            </div>
-          </div>
-          this.setState({test2: card})
-        }
-        console.log(this.state.test1)
       });
     await API.photo(query)
       .then(res => {
@@ -108,18 +94,18 @@ class Home extends React.Component {
               </div>
             </form>
             <div className="cards-container">
-            {this.state.photo.map((each, i) => (
-              <div key={i}>
-                <div className="cards">
+              {this.state.photo.map((each, i) => (
+                <div key={i}>
+                  <div className="cards">
                     <img className="smaller" src={each.photo.thumb} alt="food"></img>
                     <li className="we">{"Food Name: " + each.food_name}</li>
                     <li className="we">{"Brand Name: " + each.brand_name}</li>
                     <li className="we">{"Calories: " + each.nf_calories}</li>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
             </div>
-                  </Food>
+          </Food>
         </Container>
       </div>
     );
