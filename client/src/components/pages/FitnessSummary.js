@@ -23,7 +23,7 @@ class FitnessSummary extends React.Component {
     this.setState({
       chartData: axios.get('/api/data')
           .then(res =>
-            this.setState({ chartData: res.data}, console.log(res.data)), 
+            this.setState({ chartData: res.data}, console.log(res)), 
             
           )
           .catch(err => console.log(err))

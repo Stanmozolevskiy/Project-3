@@ -259,7 +259,7 @@ module.exports = (app) => {
   //route for charts js
   app.get("/api/data", function(req, res) {
     // Find the user that is signed in
-    User.find({firstName: "Scott"}) //change to req.body._id for prod
+    TablesSchema.find(req.body._id) //change to req.body._id for prod
       .then(function(chartData) {
         // If user found, send them back to the client
         res.json(chartData);
