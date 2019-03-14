@@ -8,7 +8,10 @@ class FitnessSummary extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      chartData: {},
+      foodChartDates: [],
+      foodChartCalories: [],
+      exerciseChartDates: [],
+      exerciseChartCalories: [],
       rewardButton: "",
       motivateButton: ""
     }
@@ -21,38 +24,67 @@ class FitnessSummary extends React.Component {
 
   getChartData() {
     this.setState({
-      //axios.get('/api/tables)
-          // .then(res =>
-          //   this.setState({ chartData: res.data})
-          // )
-          // .catch(err => console.log(err));
-      //};
-      //})
+      chartData: axios.get('/api/data')
+          .then(res => {
+              // this.setState({ chartData: res.data}, console.log(res)), 
+              console.log(res);
+              const exercises = [];
+              const foods = [];
+              for (let i = 0; i < res.data.length; i++) {
+                //if res has value exercise push the object into exercise
+                if (res.data[i]["exercise"]) {
+                   exercises.push(res.data[i]);
+                }
+                //else push to the food array
+                else {
+                   foods.push(res.data[i]);
+                }
+              }
+              console.log (exercises, foods);
+              const exerciseDates = exercises.map(exercise=> {
+                return exercise.date
+              })
+              console.log(exerciseDates);
+              const caloriesBurned = exercises.map(exercise => {
+                return exercise.caloriesBurned
+              })
+              console.log(caloriesBurned);
+              const foodDates = foods.map(food=> {
+                return 
+              })
+          })
+            
+          
+          
+          .catch(err => console.log(err))
+      })
+      
+    }
       //ajax call here
-      chartData: {
-        labels: ['Monday', 'Tuesday', 'Wednesday','Thursday', 'Friday', 'Saturday', 'Sunday'],
-        datasets: [
-          {
-            label: 'Calories Burned',
-            data: [
-              355, 65, 215, 325, 465, 550, 175
-            ],
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.6)',
-              'rgba(54, 162, 235, 0.6)',
-              'rgba(255, 206, 86, 0.6)',
-              'rgba(75, 192, 192, 0.6)',
-              'rgba(153, 102, 255, 0.6)',
-              'rgba(255, 159, 64, 0.6)',
-              'rgba(255, 99, 132, 0.6)'
-            ]
+  //     chartData: {
+  //       labels: ['Monday', 'Tuesday', 'Wednesday','Thursday', 'Friday', 'Saturday', 'Sunday'],
+  //       datasets: [
+  //         {
+  //           label: 'Calories Burned',
+  //           data: [
+  //             355, 65, 215, 325, 465, 550, 175
+  //           ],
+  //           backgroundColor: [
+  //             'rgba(255, 99, 132, 0.6)',
+  //             'rgba(54, 162, 235, 0.6)',
+  //             'rgba(255, 206, 86, 0.6)',
+  //             'rgba(75, 192, 192, 0.6)',
+  //             'rgba(153, 102, 255, 0.6)',
+  //             'rgba(255, 159, 64, 0.6)',
+  //             'rgba(255, 99, 132, 0.6)'
+  //           ]
 
-          }
-        ]
+  //         }
+  //       ]
 
-      }
-    })
-  }
+  //     }
+  //   })
+  // }
 
   getMotivateValue =  () => {
     const getFitnessPunishment = ["Donate $20 to your favorite charity", "Take a cold shower for 3 days in a row", "Do as many push ups as you can", "Eat only chicken and vegetables for the next week", "Run backwards on the treadmill for 10 minutes"];

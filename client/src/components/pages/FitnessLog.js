@@ -6,7 +6,7 @@ import food from "../food";
 import fitnessLogcss from "./FitnessLog/fitnessLog.css";
 import axios from 'axios';
 
-console.log(exercise);
+// console.log(exercise);
 // or in ECMAScript 5
 // import ReactBSTable from 'react-bootstrap-table';  
 // var BootstrapTable = ReactBSTable.BootstrapTable;
@@ -46,12 +46,79 @@ class EditTypeTable extends React.Component {
     afterSaveCell: this.cellEdit
   };
 
+  state = {
+    exercise: [], //exercise
+    food: [] //food
+  }
+
+componentDidMount () {
+  axios.get('/api/data')
+  .then(res => {
+    console.log("get data: ", res)
+    // console.log(Object.keys(res.data[0]));
+    //loop through list of objects
+    for (let i = 0; i < res.data.length; i++) {
+      //if res has value exercise push the object into exercise
+      if (res.data[i]["exercise"]) {
+         this.state.exercise.push(res.data[i]);
+      }
+      //else push to the food array
+      else {
+         this.state.food.push(res.data[i]);
+      }
+    }
+    console.log(this.state.exercise);
+    console.log(this.state.food);
+
+    this.setState({
+      exercise: this.state.exercise,
+      food: this.state.food
+    })
+  
+   })
+ 
+  }
+
+  //set the current state to the values from the database
+
+
+
+
+ //get data from mongo to initially populate the tables if data has been saved before
+ getData () {
+  axios.get('/api/data')
+  .then(res => {
+    console.log("get data: ", res)
+    // console.log(Object.keys(res.data[0]));
+    //loop through list of objects
+    for (let i = 0; i < res.data.length; i++) {
+      //if res has value exercise push the object into exercise
+      if (res.data[i]["exercise"]) {
+         this.state.exercise.push(res.data[i]);
+      }
+      //else push to the food array
+      else {
+         this.state.food.push(res.data[i]);
+      }
+    }
+    console.log(this.state.exercise);
+    console.log(this.state.food);
+
+    this.setState({
+      exercise: this.state.exercise,
+      food: this.state.food
+    })
+  
+   })
+ }
+
   //when a new row is added, send it to the backend route /api/tables
   onAddRow (row) {
     // console.log('row: ', row);
     axios.post('/api/tables', row)
     .then(res => {
-      console.log(res);
+      console.log(this);
+      this.setState({exercise: res});
       console.log(res.data);
     })
   }
@@ -59,33 +126,29 @@ class EditTypeTable extends React.Component {
   cellEdit(row) {
     console.log(row)
     // make axios call to save to back end
-    axios.put('/api/tables', row)
+    axios.put('/api/update', row)
     .then(res => {
       console.log(res);
-      console.log(res.data);
+      // console.log(res.data);
     })
   }
 
   render() {
-    // console.log(food);
-    // console.log(exercise);
-    /*look for prepend option*/
-
     const options = {
       afterInsertRow: this.onAddRow
   }
     return (
       <Container>
-      <BootstrapTable  data={ exercise } cellEdit={ this.cellEditProp } options={options} insertRow={ true } > 
-          {/* <TableHeaderColumn dataField='id' isKey={ true }>ID</TableHeaderColumn> */}
+      <BootstrapTable  data={this.state.exercise} cellEdit={ this.cellEditProp } options={options} insertRow={ true } > 
+          <TableHeaderColumn dataField='id' hidden></TableHeaderColumn>
           <TableHeaderColumn dataField='date' isKey={true} editable={ {type: 'textarea'} }>Date</TableHeaderColumn>
           <TableHeaderColumn dataField='exercise' editable={ { type: 'textarea', validator: "" } }>Exercise</TableHeaderColumn>
           <TableHeaderColumn dataField='time' editable={ { type: 'textarea', validator: "" } }>Time</TableHeaderColumn>
           <TableHeaderColumn dataField='intensity' editable={ { type: 'textarea', options: { values: "" } } }>Intensity</TableHeaderColumn>
           <TableHeaderColumn dataField='caloriesBurned' editable={ { type: 'textarea', options: { values: 'Y:N' } } }>Calories Burned</TableHeaderColumn>
       </BootstrapTable> <br /> <br />
-      <BootstrapTable data={ food } cellEdit={ this.cellEditProp } options={options} insertRow={ true }>
-      {/* <TableHeaderColumn dataField='id' isKey={ true }>ID</TableHeaderColumn> */}
+      <BootstrapTable data={this.state.food} cellEdit={ this.cellEditProp } options={options} insertRow={ true }>
+      <TableHeaderColumn dataField='id' hidden></TableHeaderColumn>
       <TableHeaderColumn dataField='date' isKey={true} editable={ {type: 'textarea'} }>Date</TableHeaderColumn>
       <TableHeaderColumn dataField='breakfast' editable={ { type: 'textarea', validator: "" } }>Breakfast</TableHeaderColumn>
       <TableHeaderColumn dataField='lunch' editable={ { type: 'textarea', validator: "" } }>Lunch</TableHeaderColumn>

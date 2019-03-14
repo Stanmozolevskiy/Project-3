@@ -244,17 +244,30 @@ module.exports = (app) => {
       });
   });
 
-  app.get("/api/find/user", function(req, res) {
+  //route to update each row in the exercise and food tables
+  app.put("/api/update", function(req, res) {
+    TablesSchema.findOneAndUpdate({}, {$set: req.body}, {new: true})  //req.body._id in curl brackets <- stick to db from now on
+    .then(function(data) {
+      console.log(data);
+      res.json(data);
+    })
+    .catch(function(err) {
+      res.json(err);
+    })
+  })
+
+  //route for charts js
+  app.get("/api/data", function(req, res) {
     // Find the user that is signed in
-    TablesSchema.find({firstName: "Scott"}) //change to req.body.id for prod
-      .then(function(dbNote) {
+    TablesSchema.find(req.body._id) //change to req.body._id for prod
+      .then(function(chartData) {
         // If user found, send them back to the client
-        res.json(dbNote);
+        res.json(chartData);
       })
       .catch(function(err) {
         // If an error occurs, send the error back to the client
         res.json(err);
-      });
+      })
   });
 
 
