@@ -8,7 +8,10 @@ class FitnessSummary extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      chartData: {},
+      foodChartDates: [],
+      foodChartCalories: [],
+      exerciseChartDates: [],
+      exerciseChartCalories: [],
       rewardButton: "",
       motivateButton: ""
     }
@@ -22,10 +25,37 @@ class FitnessSummary extends React.Component {
   getChartData() {
     this.setState({
       chartData: axios.get('/api/data')
-          .then(res =>
-            this.setState({ chartData: res.data}, console.log(res)), 
+          .then(res => {
+              // this.setState({ chartData: res.data}, console.log(res)), 
+              console.log(res);
+              const exercises = [];
+              const foods = [];
+              for (let i = 0; i < res.data.length; i++) {
+                //if res has value exercise push the object into exercise
+                if (res.data[i]["exercise"]) {
+                   exercises.push(res.data[i]);
+                }
+                //else push to the food array
+                else {
+                   foods.push(res.data[i]);
+                }
+              }
+              console.log (exercises, foods);
+              const exerciseDates = exercises.map(exercise=> {
+                return exercise.date
+              })
+              console.log(exerciseDates);
+              const caloriesBurned = exercises.map(exercise => {
+                return exercise.caloriesBurned
+              })
+              console.log(caloriesBurned);
+              const foodDates = foods.map(food=> {
+                return 
+              })
+          })
             
-          )
+          
+          
           .catch(err => console.log(err))
       })
       
