@@ -75,7 +75,7 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="blueBackground">
         <Container>
           <h2 className="white">Welcome to Fitness First. Your one stop, Fitness Workshop </h2>
           <Image src={banner} />
