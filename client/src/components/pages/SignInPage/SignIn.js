@@ -1,7 +1,7 @@
 import { getFromStorage, setInStorage, } from '../../../utils/storage';
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Form } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import "../style.css"
 import API from "../../../utils/API";
 
@@ -193,7 +193,7 @@ class SignIn extends React.Component {
                         </Form.Group>
                         <br />
 
-                        <Button variant="light" href onClick={this.onSignIn}>Sign In</Button>
+                        <button variant="light" href onClick={this.onSignIn}>Sign In</button>
                         <br />
 
                     </Form>
@@ -216,7 +216,7 @@ class SignIn extends React.Component {
                     </h4>
 
                 </p>
-                <Button variant="light" onClick={this.logout}>Logout</Button>
+                <button variant="light" onClick={this.logout}>Logout</button>
             </div>
         );
     }
