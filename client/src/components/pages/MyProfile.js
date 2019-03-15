@@ -256,7 +256,6 @@ class User extends React.Component {
 
         return (
             <div>
-                <p>Account </p>
                 <button onClick={this.logout}>Logout</button>
             </div>
         );
