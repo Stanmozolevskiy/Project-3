@@ -193,7 +193,7 @@ class SignIn extends React.Component {
                         </Form.Group>
                         <br />
 
-                        <button href onClick={this.onSignIn}>Sign In</button>
+                        <Button variant="light" href onClick={this.onSignIn}>Sign In</Button>
                         <br />
 
                     </Form>
@@ -216,7 +216,7 @@ class SignIn extends React.Component {
                     </h4>
 
                 </p>
-                <button onClick={this.logout}>Logout</button>
+                <Button variant="light" onClick={this.logout}>Logout</Button>
             </div>
         );
     }
