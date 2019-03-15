@@ -16,7 +16,7 @@ class FitnessSummary extends React.Component {
       motivateButton: ""
     }
   }
-
+  //add data to the screen upon page load (if the user has entered before)
   componentWillMount() {
     this.getChartData();
   }
@@ -39,23 +39,24 @@ class FitnessSummary extends React.Component {
             foods.push(res.data[i]);
           }
         }
-        console.log(exercises, foods);
+        console.log(exercises, foods); // take the object coming back from mongo and turn the dates into an array based on entries
         const exerciseDates = exercises.map(exercise => {
           return exercise.date
         })
-        console.log(exerciseDates);
+        console.log(exerciseDates); //take the object coming back from mongo and turn the calories burned into an array based on entries
         const caloriesBurned = exercises.map(exercise => {
           return exercise.caloriesBurned
         })
-        console.log(caloriesBurned);
+        console.log(caloriesBurned); //take the object coming back from mongo and turn the dates in food table into an array based on entries        
         const foodDates = foods.map(food => {
           return food.date
         })
-        console.log(foodDates);
+        console.log(foodDates); //take the object coming back from mongo and turn the calories consumed into an array based on entries        
         const foodConsumed = foods.map(food => {
           return food.caloriesConsumed
         })
         console.log(foodConsumed);
+        // add the arrays above into the bar and line charts
         this.setState({
 
           exerciseData: {
@@ -107,8 +108,8 @@ class FitnessSummary extends React.Component {
       .log(this.state.foodChartDates);
   }
 
-  //ajax call here
-
+  
+  //function to randomize rewards for meeting fitness goal
   getMotivateValue = () => {
     const getFitnessPunishment = ["Donate $20 to your favorite charity", "Take a cold shower for 3 days in a row", "Do as many push ups as you can", "Eat only chicken and vegetables for the next week", "Run backwards on the treadmill for 10 minutes"];
     var rand = getFitnessPunishment[Math.floor(Math.random() * getFitnessPunishment.length)];
@@ -117,6 +118,7 @@ class FitnessSummary extends React.Component {
 
   }
 
+  //function to randomize penalties for missing fitness goal
   getRewardValue = () => {
     const getFitnessReward = ["Eat out at your favorite restaraunt", "Binge watch a show on Netflix", "Buy a new outfit", "Relax in the hot tub", "Plan a hike or an adventure with friends"];
     var rand = getFitnessReward[Math.floor(Math.random() * getFitnessReward.length)];
