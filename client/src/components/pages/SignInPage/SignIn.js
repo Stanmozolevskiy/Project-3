@@ -160,7 +160,7 @@ class SignIn extends React.Component {
             });
         }
     }
-    render() {console.log(this.state)
+    render() {
         const {
             isLoading,
             token,
