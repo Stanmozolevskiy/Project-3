@@ -245,8 +245,11 @@ module.exports = (app) => {
   });
 
   //route to update each row in the exercise and food tables
+  // console.log("req.body", req.body);
   app.put("/api/update", function(req, res) {
-    TablesSchema.findOneAndUpdate({}, {$set: req.body}, {new: true})  //req.body._id in curl brackets <- stick to db from now on
+    console.log('test');
+    console.log(req.body)
+    TablesSchema.findOneAndUpdate({_id: req.body._id}, {$set: req.body}, {new: true})  //req.body._id in curl brackets <- stick to db from now on
     .then(function(data) {
       console.log(data);
       res.json(data);
@@ -254,12 +257,13 @@ module.exports = (app) => {
     .catch(function(err) {
       res.json(err);
     })
+    console.log(req.body)
   })
 
   //route for charts js
   app.get("/api/data", function(req, res) {
     // Find the user that is signed in
-    TablesSchema.find(req.body._id) //change to req.body._id for prod
+    TablesSchema.find(req.body) //change to req.body._id for prod
       .then(function(chartData) {
         // If user found, send them back to the client
         res.json(chartData);

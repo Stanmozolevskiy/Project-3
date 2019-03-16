@@ -54,25 +54,23 @@ class EditTypeTable extends React.Component {
 componentDidMount () {
   axios.get('/api/data')
   .then(res => {
-    console.log("get data: ", res)
-    // console.log(Object.keys(res.data[0]));
     //loop through list of objects
+    let exerciseArr = []
+    let foodArr = []
     for (let i = 0; i < res.data.length; i++) {
       //if res has value exercise push the object into exercise
       if (res.data[i]["exercise"]) {
-         this.state.exercise.push(res.data[i]);
+         exerciseArr.push(res.data[i]);
       }
       //else push to the food array
       else {
-         this.state.food.push(res.data[i]);
+         foodArr.push(res.data[i]);
       }
     }
-    console.log(this.state.exercise);
-    console.log(this.state.food);
 
     this.setState({
-      exercise: this.state.exercise,
-      food: this.state.food
+      exercise: exerciseArr,
+      food: foodArr
     })
   
    })
