@@ -187,7 +187,7 @@ class SignIn extends React.Component {
                         </Form.Group>
                         <Form.Group controlId="formLasttName">
                             <Form.Label>Password</Form.Label>
-                            <Form.Control type="text" value={signInPassword} onChange={this.onTextboxChangeSignInPassword} placeholder="password" />
+                            <Form.Control type="password" value={signInPassword} onChange={this.onTextboxChangeSignInPassword} placeholder="password" />
                             <Form.Text className="text-muted">
                             </Form.Text>
                         </Form.Group>
