@@ -147,16 +147,16 @@ componentDidMount () {
            <br />
          </Row>
       <BootstrapTable  data={this.state.exercise} cellEdit={ this.cellEditProp } options={options} insertRow={ true } > 
-          <TableHeaderColumn dataField='id' hidden></TableHeaderColumn>
-          <TableHeaderColumn dataField='date' isKey={true} editable={ {type: 'textarea'} }>Date</TableHeaderColumn>
+          <TableHeaderColumn dataField='id' isKey={true} hidden></TableHeaderColumn>
+          <TableHeaderColumn dataField='date'  editable={ {type: 'textarea'} }>Date</TableHeaderColumn>
           <TableHeaderColumn dataField='exercise' editable={ { type: 'textarea', validator: "" } }>Exercise</TableHeaderColumn>
           <TableHeaderColumn dataField='time' editable={ { type: 'textarea', validator: "" } }>Time</TableHeaderColumn>
           <TableHeaderColumn dataField='intensity' editable={ { type: 'textarea', options: { values: "" } } }>Intensity</TableHeaderColumn>
           <TableHeaderColumn dataField='caloriesBurned' editable={ { type: 'textarea', options: { values: 'Y:N' } } }>Calories Burned</TableHeaderColumn>
       </BootstrapTable> <br /> <br />
       <BootstrapTable data={this.state.food} cellEdit={ this.cellEditProp } options={options} insertRow={ true }>
-      <TableHeaderColumn dataField='id' hidden></TableHeaderColumn>
-      <TableHeaderColumn dataField='date' isKey={true} editable={ {type: 'textarea'} }>Date</TableHeaderColumn>
+      <TableHeaderColumn dataField='id' isKey={true} hidden></TableHeaderColumn>
+      <TableHeaderColumn dataField='date'  editable={ {type: 'textarea'} }>Date</TableHeaderColumn>
       <TableHeaderColumn dataField='breakfast' editable={ { type: 'textarea', validator: "" } }>Breakfast</TableHeaderColumn>
       <TableHeaderColumn dataField='lunch' editable={ { type: 'textarea', validator: "" } }>Lunch</TableHeaderColumn>
       <TableHeaderColumn dataField='dinner' editable={ { type: 'textarea' } }>Dinner</TableHeaderColumn>
