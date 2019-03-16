@@ -1,6 +1,6 @@
 import React from 'react';
 import 'whatwg-fetch';
-import { Form } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import { getFromStorage, } from '../../utils/storage';
 import API from "../../utils/API";
 import {Redirect} from 'react-router-dom'
@@ -230,7 +230,7 @@ class User extends React.Component {
                         </Form.Group>
                         <Form.Group controlId="fitnessGoal">
                             <Form.Label>Fitness Goal</Form.Label>
-                            <Form.Control type="test" value={signUpFitnessGoal} onChange={this.onTextboxChangeFitnessGoal} placeholder="Type Fitnes Goals" />
+                            <Form.Control type="test" value={signUpFitnessGoal} onChange={this.onTextboxChangeFitnessGoal} placeholder="Type Fitness Goals" />
                             <Form.Text className="text-muted">
                             </Form.Text>
                         </Form.Group>
@@ -247,7 +247,7 @@ class User extends React.Component {
                             </Form.Text>
                         </Form.Group>
                         <br />
-                        <button onClick={this.onSignUp}>Sign UP</button>
+                        <Button variant="light" onClick={this.onSignUp}>Sign Up</Button>
                         <br />
                     </Form>
                 </div>
@@ -256,8 +256,9 @@ class User extends React.Component {
 
         return (
             <div>
-                <p>Account </p>
-                <button onClick={this.logout}>Logout</button>
+                <p>Account Details </p>
+                
+                <Button variant="light" onClick={this.logout}>Logout</Button>
             </div>
         );
     }

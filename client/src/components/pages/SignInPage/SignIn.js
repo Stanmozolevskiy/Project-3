@@ -193,7 +193,7 @@ class SignIn extends React.Component {
                         </Form.Group>
                         <br />
 
-                        <button variant="light" href onClick={this.onSignIn}>Sign In</button>
+                        <Button variant="light"  onClick={this.onSignIn}>Sign In</Button>
                         <br />
 
                     </Form>
@@ -203,20 +203,18 @@ class SignIn extends React.Component {
 
         return (
             <div>
-                <p>Welcome:
-                <h4>
-
-                        {this.state.user.firstName}
+                <p>
+                <h4>Welcome to Fitness First!
+                <br /><br />
+                {this.state.user.firstName + " " + this.state.user.lastName}
                         <br />
                         <br />
-                        {this.state.user.lastName}
-                        <br />
-                        <br />
-                        {this.state.user.fitnessGoal}
+                        {"Age: " + this.state.user.signUpAge} <br /> <br />
+                        {"Fitness Goal: " + this.state.user.fitnessGoal}
                     </h4>
 
                 </p>
-                <button variant="light" onClick={this.logout}>Logout</button>
+                <Button variant="light" onClick={this.logout}>Logout</Button>
             </div>
         );
     }
