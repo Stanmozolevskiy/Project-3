@@ -1,7 +1,7 @@
 import { getFromStorage, setInStorage, } from '../../../utils/storage';
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Container, Row, Card } from 'react-bootstrap';
 import "../style.css"
 import API from "../../../utils/API";
 
@@ -202,20 +202,28 @@ class SignIn extends React.Component {
         }
 
         return (
-            <div>
-                <p>
-                <h4>Welcome to Fitness First!
+            <Container>
                 <br /><br />
-                {this.state.user.firstName + " " + this.state.user.lastName}
-                        <br />
-                        <br />
-                        {"Age: " + this.state.user.signUpAge} <br /> <br />
-                        {"Fitness Goal: " + this.state.user.fitnessGoal}
-                    </h4>
+                <Row className="justify-content-md-center">
 
-                </p>
-                <Button variant="light" onClick={this.logout}>Logout</Button>
-            </div>
+                <Card style={{ width: '18rem' }}>
+                    
+                        <Card.Body>
+                            <Card.Title className="justify-content-md-center">My Profile</Card.Title>
+                            <Card.Img variant="top" src="https://images.unsplash.com/photo-1542974242-cde14af34396?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1653&q=80/100px180" />  
+                                <Card.Text>
+                                {this.state.user.firstName + " " + this.state.user.lastName}
+                                <br />
+                                {"Fitness Goal: " + this.state.user.fitnessGoal}
+                                </Card.Text>
+                        </Card.Body>
+                </Card>
+                </Row>
+                <br />
+                <Row className="justify-content-md-center">
+                <Button  variant="light" onClick={this.logout}>Logout</Button>
+                </Row>
+            </Container>
         );
     }
 }
