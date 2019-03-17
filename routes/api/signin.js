@@ -263,7 +263,7 @@ module.exports = (app) => {
   //route for charts js
   app.get("/api/data", function(req, res) {
     // Find the user that is signed in
-    TablesSchema.find(req.body) //change to req.body._id for prod
+    TablesSchema.find(req.body._id) //change to req.body._id for prod //for local testing use req.body
       .then(function(chartData) {
         // If user found, send them back to the client
         res.json(chartData);
@@ -277,7 +277,7 @@ module.exports = (app) => {
 
   app.get("/api/tables", function(req, res) {
     // Find all users
-    User.find({firstName:"Scott"}) //_id: req.body.id
+    User.find({_id: req.body.id}) //_id: req.body.id //for local testing substitute - firstName:"Scott"
       // Specify that we want to populate the retrieved users with any associated notes
       .populate("tables")
       .then(function(tbData) {
