@@ -13,7 +13,7 @@ class CustomNavbar extends React.Component {
     return (
       <Navbar expand="lg" id="navbar">
         <Navbar fixed="top" />
-        <div class="col-md-2 text-center"> <Link to=""><Image src={homeimage} /></Link> </div>
+        <div class="col-md-2 text-center"> <Link to=""><i class="fas fa-home fa-5x"></i></Link> </div>
         <div class="col-md-3">
           <Link to="FitnessLog"><Button size="large" className="btn-outline-secondary col-md-12" id="navbutton">Fitness Log</Button></Link>
         </div>
