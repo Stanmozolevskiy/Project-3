@@ -1,4 +1,4 @@
-import { getFromStorage, setInStorage, } from '../../../utils/storage';
+import { getFromStorage} from '../../../utils/storage';
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Button, Container, Row, Card } from 'react-bootstrap';

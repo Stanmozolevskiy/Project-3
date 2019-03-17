@@ -14,3 +14,13 @@ div.modal-content.react-bs-table-insert-modal {
 .ReactModalPortal {
     overflow: scroll
 }
+.react-bs-table-inser-modal-header{
+    display: contents !important
+}
+.modal-footer, .react-bs-table-inser-modal-footer{
+    border:none !important
+}
+h4.modal-title{
+    padding-top:20px;
+    padding-left: 20px
+}

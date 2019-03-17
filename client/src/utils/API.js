@@ -1,5 +1,5 @@
 import axios from "axios"
-import { getFromStorage, setInStorage, } from '../utils/storage';
+import {setInStorage} from '../utils/storage';
 export default {
   search: (query) => {
     const id = "4fd1d55d";

@@ -1,5 +1,5 @@
 #navbar {
-    background-color: rgb(206, 216, 219);
+    background-color: #404040;
 }
 #navbutton {
     background-color: white;
@@ -11,4 +11,7 @@
 }
 #navbuttonton:active {
     background-color: gray;
+}
+.fas{
+    color:#ffffff;
 }
