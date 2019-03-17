@@ -1,9 +1,7 @@
 import React from "react";
-import {Table, Image, Container, Row, Col } from 'react-bootstrap'
+import {Image, Container, Row, Col } from 'react-bootstrap'
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
-import exercise from "../exercise";
-import food from "../food";
-import fitnessLogcss from "./FitnessLog/fitnessLog.css";
+import "./FitnessLog/fitnessLog.css";
 import axios from 'axios';
 
 // console.log(exercise);
@@ -14,29 +12,29 @@ import axios from 'axios';
 //test
 
 // validator function pass the user input value and row object. In addition, a bool return value is expected
-function jobNameValidator(value, row) {
-  const response = { isValid: true, notification: { type: 'success', msg: '', title: '' } };
-  if (!value) {
-    response.isValid = false;
-    response.notification.type = 'error';
-    response.notification.msg = 'Value must be inserted';
-    response.notification.title = 'Requested Value';
-  } else if (value.length < 1) {
-    response.isValid = false;
-    response.notification.type = 'error';
-    response.notification.msg = 'Value must have 1 characters';
-    response.notification.title = 'Invalid Value';
-  }
-  return response;
-}
+// function jobNameValidator(value, row) {
+//   const response = { isValid: true, notification: { type: 'success', msg: '', title: '' } };
+//   if (!value) {
+//     response.isValid = false;
+//     response.notification.type = 'error';
+//     response.notification.msg = 'Value must be inserted';
+//     response.notification.title = 'Requested Value';
+//   } else if (value.length < 1) {
+//     response.isValid = false;
+//     response.notification.type = 'error';
+//     response.notification.msg = 'Value must have 1 characters';
+//     response.notification.title = 'Invalid Value';
+//   }
+//   return response;
+// }
 
-function jobStatusValidator(value, row) {
-  const nan = isNaN(parseInt(value, 10));
-  if (nan) {
-    return 'Job Status must be a integer!';
-  }
-  return true;
-}
+// function jobStatusValidator(value, row) {
+//   const nan = isNaN(parseInt(value, 10));
+//   if (nan) {
+//     return 'Job Status must be a integer!';
+//   }
+//   return true;
+// }
 
 class EditTypeTable extends React.Component {
   //set the properties of the cells to save after the user hits the save button
@@ -78,10 +76,6 @@ componentDidMount () {
   }
 
   //set the current state to the values from the database
-
-
-
-
  //get data from mongo to initially populate the tables if data has been saved before
  getData () {
   axios.get('/api/data')
@@ -145,7 +139,7 @@ componentDidMount () {
            <br />
          </Row>
       <BootstrapTable  data={this.state.exercise} cellEdit={ this.cellEditProp } options={options} insertRow={ true } > 
-          <TableHeaderColumn dataField='id' isKey={true} hidden></TableHeaderColumn>
+          <TableHeaderColumn className="hide" dataField='id' isKey={true} hidden></TableHeaderColumn>
           <TableHeaderColumn dataField='date'  editable={ {type: 'textarea'} }>Date</TableHeaderColumn>
           <TableHeaderColumn dataField='exercise' editable={ { type: 'textarea', validator: "" } }>Exercise</TableHeaderColumn>
           <TableHeaderColumn dataField='time' editable={ { type: 'textarea', validator: "" } }>Time</TableHeaderColumn>
