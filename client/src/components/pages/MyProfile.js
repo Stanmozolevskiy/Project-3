@@ -257,7 +257,6 @@ class User extends React.Component {
         return (
             <Container>
             <div>
-                <button onClick={this.logout}>Logout</button>
                 <h1>Thank you for signing up for Fitness First!</h1>
                 <br />
                 <h2>About the site </h2>

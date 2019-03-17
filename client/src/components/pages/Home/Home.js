@@ -17,7 +17,8 @@ class Home extends React.Component {
       exerciseQuery: "",
       results: [],
       photo: [],
-      exercise: []
+      exercise: [],
+      restaurantList: []
     };
   }
   handleInputChange = event => {
