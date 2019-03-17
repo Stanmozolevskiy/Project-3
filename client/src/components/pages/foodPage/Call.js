@@ -16,18 +16,3 @@ const food = search => {
         
 }
 module.exports = food
-
-
-// const food2 = (search) => {
-//     const axios = require('axios');
-//     search = "apple"
-//     axios.get("https://trackapi.nutritionix.com/v2/search/instant?query=" + search, {
-//         headers: {
-//             "x-app-id": "4fd1d55d",
-//             "x-app-key": "9788c6b183e3995fbc144d4b1b300850"
-//         }
-//     }).then(res => {
-//         console.log(res.data.branded)
-//     })
-// }
-// food2()

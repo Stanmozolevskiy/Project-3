@@ -1,6 +1,6 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button, Container, Image, Modal } from 'react-bootstrap';
+import { Button, Container, Image} from 'react-bootstrap';
 import Food from '../foodPage/Contact'
 import API from "../../../utils/API";
 import "../style.css"

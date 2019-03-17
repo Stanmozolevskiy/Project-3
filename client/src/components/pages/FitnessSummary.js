@@ -1,8 +1,7 @@
 import React from "react";
 import './style.css';
 import {Container, Button, Alert} from "react-bootstrap";
-import {Bar, Line, Pie} from 'react-chartjs-2';
-import exercise from "../exercise.json";
+import {Bar, Line} from 'react-chartjs-2';
 import axios from 'axios';
 class FitnessSummary extends React.Component {
   constructor(props) {
