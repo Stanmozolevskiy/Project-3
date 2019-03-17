@@ -1,7 +1,7 @@
 import { getFromStorage, setInStorage, } from '../../../utils/storage';
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Form } from 'react-bootstrap';
+import { Form, Button, Container, Row, Card } from 'react-bootstrap';
 import "../style.css"
 import API from "../../../utils/API";
 
@@ -160,7 +160,7 @@ class SignIn extends React.Component {
             });
         }
     }
-    render() {console.log(this.state)
+    render() {
         const {
             isLoading,
             token,
@@ -187,13 +187,13 @@ class SignIn extends React.Component {
                         </Form.Group>
                         <Form.Group controlId="formLasttName">
                             <Form.Label>Password</Form.Label>
-                            <Form.Control type="text" value={signInPassword} onChange={this.onTextboxChangeSignInPassword} placeholder="password" />
+                            <Form.Control type="password" value={signInPassword} onChange={this.onTextboxChangeSignInPassword} placeholder="password" />
                             <Form.Text className="text-muted">
                             </Form.Text>
                         </Form.Group>
                         <br />
 
-                        <button href onClick={this.onSignIn}>Sign In</button>
+                        <Button variant="light"  onClick={this.onSignIn}>Sign In</Button>
                         <br />
 
                     </Form>
@@ -202,22 +202,28 @@ class SignIn extends React.Component {
         }
 
         return (
-            <div>
-                <p>Welcome:
-                <h4>
+            <Container>
+                <br /><br />
+                <Row className="justify-content-md-center">
 
-                        {this.state.user.firstName}
-                        <br />
-                        <br />
-                        {this.state.user.lastName}
-                        <br />
-                        <br />
-                        {this.state.user.fitnessGoal}
-                    </h4>
-
-                </p>
-                <button onClick={this.logout}>Logout</button>
-            </div>
+                <Card style={{ width: '18rem' }}>
+                    
+                        <Card.Body>
+                            <Card.Title className="justify-content-md-center">My Profile</Card.Title>
+                            <Card.Img variant="top" src="https://images.unsplash.com/photo-1542974242-cde14af34396?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1653&q=80/100px180" />  
+                                <Card.Text>
+                                {this.state.user.firstName + " " + this.state.user.lastName}
+                                <br />
+                                {"Fitness Goal: " + this.state.user.fitnessGoal}
+                                </Card.Text>
+                        </Card.Body>
+                </Card>
+                </Row>
+                <br />
+                <Row className="justify-content-md-center">
+                <Button  variant="light" onClick={this.logout}>Logout</Button>
+                </Row>
+            </Container>
         );
     }
 }

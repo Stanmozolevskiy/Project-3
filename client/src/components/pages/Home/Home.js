@@ -68,7 +68,7 @@ class Home extends React.Component {
             <form>
               <div className="form-group" id="foodsearch">
                 <label htmlFor="exampleInputEmail1" id="searchlabel">Calorie Loss Count Search</label>
-                <input type="search" value={this.state.exerciseQuery} placeholder="Enter a exercise" onChange={this.handleInputChange} name="exerciseQuery" className="form-control" />
+                <input type="search" value={this.state.exerciseQuery} placeholder="Enter an exercise" onChange={this.handleInputChange} name="exerciseQuery" className="form-control" />
               </div>
               <div id="foodsearchbutton">
                 <Button id="searchbutton" onClick={this.handleExerciseSubmit}>Search</Button>
