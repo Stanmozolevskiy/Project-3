@@ -126,7 +126,6 @@
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 10px;
   background: #fff;
-  margin: 1rem;
 }
 .white{
   color: #ffffff;
