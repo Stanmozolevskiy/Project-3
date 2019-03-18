@@ -77,7 +77,7 @@ componentDidMount () {
     // console.log('row: ', row);
     axios.post('/api/tables', row)
     .then(res => {
-      console.log(res);
+      console.log(this);
       this.setState({exercise: res});
       console.log(res.data);
     })
