@@ -4,38 +4,6 @@ import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import "./FitnessLog/fitnessLog.css";
 import axios from 'axios';
 
-// console.log(exercise);
-// or in ECMAScript 5
-// import ReactBSTable from 'react-bootstrap-table';  
-// var BootstrapTable = ReactBSTable.BootstrapTable;
-// var TableHeaderColumn = ReactBSTable.TableHeaderColumn;
-//test
-
-// validator function pass the user input value and row object. In addition, a bool return value is expected
-// function jobNameValidator(value, row) {
-//   const response = { isValid: true, notification: { type: 'success', msg: '', title: '' } };
-//   if (!value) {
-//     response.isValid = false;
-//     response.notification.type = 'error';
-//     response.notification.msg = 'Value must be inserted';
-//     response.notification.title = 'Requested Value';
-//   } else if (value.length < 1) {
-//     response.isValid = false;
-//     response.notification.type = 'error';
-//     response.notification.msg = 'Value must have 1 characters';
-//     response.notification.title = 'Invalid Value';
-//   }
-//   return response;
-// }
-
-// function jobStatusValidator(value, row) {
-//   const nan = isNaN(parseInt(value, 10));
-//   if (nan) {
-//     return 'Job Status must be a integer!';
-//   }
-//   return true;
-// }
-
 class EditTypeTable extends React.Component {
   //set the properties of the cells to save after the user hits the save button
   cellEditProp = {
@@ -109,7 +77,7 @@ componentDidMount () {
     // console.log('row: ', row);
     axios.post('/api/tables', row)
     .then(res => {
-      console.log(this);
+      console.log(res);
       this.setState({exercise: res});
       console.log(res.data);
     })

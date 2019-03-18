@@ -68,51 +68,6 @@ class SignIn extends React.Component {
             signInPassword: event.target.value,
         });
     }
-    // onSignIn() {
-    //     // Grab state
-    //     const {
-    //         signInEmail,
-    //         signInPassword,
-    //     } = this.state;
-
-    //     this.setState({
-    //         isLoading: true,
-    //     });
-
-    //     // Post request to backend
-    //     fetch('/api/account/signin', {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //             email: signInEmail,
-    //             password: signInPassword,
-    //         }),
-    //     }).then(res => res.json())
-    //         .then(json => {
-    //             if (json.success) {
-    //                 // !! call for the user's profile data
-    //                 API.getUser(json.userId)
-    //                     .then(res => this.setState({ user: res.data }))
-    //                     .catch(err => console.log(err));
-    //                 //!!
-    //                 setInStorage('the_main_app', { token: json.token });
-    //                 this.setState({
-    //                     signInError: json.message,
-    //                     isLoading: false,
-    //                     signInPassword: '',
-    //                     signInEmail: '',
-    //                     token: json.token,
-    //                 });
-    //             } else {
-    //                 this.setState({
-    //                     signInError: json.message,
-    //                     isLoading: false,
-    //                 });
-    //             }
-    //         });
-    // }
     onSignIn() {
         const {
             signInEmail,
@@ -227,5 +182,4 @@ class SignIn extends React.Component {
         );
     }
 }
-
 export default SignIn;

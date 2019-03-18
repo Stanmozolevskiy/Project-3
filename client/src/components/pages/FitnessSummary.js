@@ -1,7 +1,7 @@
 import React from "react";
 import './style.css';
-import {Container, Button, Alert} from "react-bootstrap";
-import {Bar, Line} from 'react-chartjs-2';
+import { Container, Button, Alert } from "react-bootstrap";
+import { Bar, Line } from 'react-chartjs-2';
 import axios from 'axios';
 class FitnessSummary extends React.Component {
   constructor(props) {
@@ -102,17 +102,17 @@ class FitnessSummary extends React.Component {
         })
       })
       .catch(err => console.log(err))
-      // })
-      console
+    // })
+    console
       .log(this.state.foodChartDates);
   }
 
-  
+
   //function to randomize rewards for meeting fitness goal
   getMotivateValue = () => {
     const getFitnessPunishment = ["Donate $20 to your favorite charity", "Take a cold shower for 3 days in a row", "Do as many push ups as you can", "Eat only chicken and vegetables for the next week", "Run backwards on the treadmill for 10 minutes"];
     var rand = getFitnessPunishment[Math.floor(Math.random() * getFitnessPunishment.length)];
-    this.setState({motivateButton: rand});
+    this.setState({ motivateButton: rand });
     console.log('rand: ' + rand);
 
   }
@@ -121,7 +121,7 @@ class FitnessSummary extends React.Component {
   getRewardValue = () => {
     const getFitnessReward = ["Eat out at your favorite restaraunt", "Binge watch a show on Netflix", "Buy a new outfit", "Relax in the hot tub", "Plan a hike or an adventure with friends"];
     var rand = getFitnessReward[Math.floor(Math.random() * getFitnessReward.length)];
-    this.setState({rewardButton: rand});
+    this.setState({ rewardButton: rand });
     console.log('rand: ' + rand);
 
   }
@@ -130,37 +130,37 @@ class FitnessSummary extends React.Component {
     return (
       <div>
         <Container>
-          <br/>
+          <br />
           <div className="chart">
             <Bar
               data={this.state.exerciseData}
               options={{
-              title: {
-                display: true,
-                text: "Daily Workout Calories Burned",
-                fontSize: 25
-              },
-              legend: {
-                display: true,
-                position: 'right'
-              }
-            }}/>
-            <br/>
-            <br/>
+                title: {
+                  display: true,
+                  text: "Daily Workout Calories Burned",
+                  fontSize: 25
+                },
+                legend: {
+                  display: true,
+                  position: 'right'
+                }
+              }} />
+            <br />
+            <br />
             <Line
               data={this.state.foodData}
               options={{
-              title: {
-                display: true,
-                text: "Daily Calories Consumed",
-                fontSize: 25,
-                label: 'Calories Consumed'
-              },
-              legend: {
-                display: true,
-                position: 'right'
-              }
-            }}/>
+                title: {
+                  display: true,
+                  text: "Daily Calories Consumed",
+                  fontSize: 25,
+                  label: 'Calories Consumed'
+                },
+                legend: {
+                  display: true,
+                  position: 'right'
+                }
+              }} />
 
           </div>
           <Alert dismissible variant="success">
@@ -174,7 +174,7 @@ class FitnessSummary extends React.Component {
                 className="btn-outline-secondary"
                 onClick={this.getRewardValue}
                 id="genericbutton">Reward</Button>
-              <br/>
+              <br />
               <h4>
                 {this.state.rewardButton}
               </h4>
@@ -190,7 +190,7 @@ class FitnessSummary extends React.Component {
               className="btn-outline-secondary"
               onClick={this.getMotivateValue}
               id="genericbutton">Motivation</Button>
-            <br/>
+            <br />
             <h4>{this.state.motivateButton}
             </h4>
           </Alert>

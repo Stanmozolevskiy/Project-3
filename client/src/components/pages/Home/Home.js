@@ -6,7 +6,6 @@ import API from "../../../utils/API";
 import "../style.css"
 import banner from './image/FitnessFirst.png';
 
-
 class Home extends React.Component {
   constructor(props, context) {
     super(props, context);

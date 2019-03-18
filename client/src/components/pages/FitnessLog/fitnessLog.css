@@ -22,5 +22,18 @@ div.modal-content.react-bs-table-insert-modal {
 }
 h4.modal-title{
     padding-top:20px;
-    padding-left: 20px
+    text-align: center;
 }
+.form-control{
+    display: initial !important
+}
+/* input.form-control.editor.edit-text{
+    display:none;
+    visibility:hidden;
+}
+.form-group{
+    margin: 0 !important
+}
+.modal-body{
+    padding-top: 0px !important
+} */
