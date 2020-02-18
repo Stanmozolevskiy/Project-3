@@ -24,7 +24,8 @@ require('./routes')(app);
 
 //serves up our react app on heroku
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+  // res.sendFile(path.join(__dirname, "./client/build/index.html"));
+  res.sendFile(path.join(__dirname, "./client/public/index.html"));
 });
 
 app.get('/name', (req, res) => {
